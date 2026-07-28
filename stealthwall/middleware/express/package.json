@@ -1,0 +1,18 @@
+{
+  "name": "stealthwall",
+  "version": "5.0.0",
+  "description": "ML-driven intrusion prevention middleware for Express - detects recon/scans, brute force, and injection patterns, blocks automatically with graduated response.",
+  "main": "index.js",
+  "author": "Chinmay Shinde",
+  "scripts": {
+    "test": "node test/run_tests.js"
+  },
+  "keywords": ["security", "ids", "ips", "middleware", "express", "ml"],
+  "license": "MIT",
+  "dependencies": {
+    "onnxruntime-node": "^1.17.0"
+  },
+  "peerDependencies": {
+    "express": ">=4.0.0"
+  }
+}
