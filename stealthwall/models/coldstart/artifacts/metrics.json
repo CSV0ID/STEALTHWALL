@@ -1,0 +1,49 @@
+{
+  "trained_at": 1787421815.4115615,
+  "feature_spec_version": 1,
+  "model_schema_version": 1,
+  "n_train": 1250,
+  "n_test": 417,
+  "n_demo": 333,
+  "held_out_demo_source": "ffuf_synthetic",
+  "in_distribution_test": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "benign_false_positive_rate": 0.0,
+    "per_group": {
+      "attack/nmap_synthetic": {
+        "n": 78,
+        "detection_rate": 1.0,
+        "false_positive_rate": 0.0
+      },
+      "attack/voidstrike_synthetic": {
+        "n": 139,
+        "detection_rate": 1.0,
+        "false_positive_rate": 0.0
+      },
+      "benign/benign_synthetic": {
+        "n": 90,
+        "detection_rate": 0.0,
+        "false_positive_rate": 0.0
+      },
+      "benign/hardneg_synthetic": {
+        "n": 110,
+        "detection_rate": 0.0,
+        "false_positive_rate": 0.0
+      }
+    }
+  },
+  "cross_tool_demo": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "benign_false_positive_rate": 0.0,
+    "per_group": {
+      "attack/ffuf_synthetic": {
+        "n": 333,
+        "detection_rate": 1.0,
+        "false_positive_rate": 0.0
+      }
+    }
+  },
+  "validation_passed": true
+}

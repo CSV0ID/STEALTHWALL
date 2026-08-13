@@ -1,0 +1,13 @@
+{"vector": [6.666667, 0.05, 0.44363, 0.755, 0.245, 0.184467, 0.155, 0.011129, 0.5, 0.4, 0.1195, 0.1143, 0.0, 0.097656], "label": "attack", "family": "scan", "source": "logged_voidstrike_train"}
+{"vector": [2.2, 0.424242, 0.793246, 1.0, 0.0, 0.0, 0.0, 0.000124, 0.5, 0.0, 0.207576, 0.127132, 0.0, 0.032227], "label": "attack", "family": "scan", "source": "logged_ffuf_demo"}
+{"vector": [2.6, 0.365385, 0.774195, 1.0, 0.0, 0.0, 0.0, 7.8e-05, 0.5, 0.0, 0.214744, 0.11901, 0.0, 0.038086], "label": "attack", "family": "scan", "source": "logged_ffuf_train"}
+{"vector": [1.45, 0.103448, 0.479641, 1.0, 0.0, 0.0, 0.0, 0.000612, 0.5, 0.0, 0.111494, 0.0, 0.0, 0.02124], "label": "attack", "family": "scan", "source": "logged_nmap_demo"}
+{"vector": [2.15, 0.069767, 0.448384, 1.0, 0.0, 0.0, 0.0, 0.000266, 0.5, 0.0, 0.110853, 0.0, 0.0, 0.031494], "label": "attack", "family": "scan", "source": "logged_nmap_train"}
+{"vector": [2.766667, 0.084337, 0.508971, 0.0, 0.036145, 0.023231, 0.0, 0.142766, 0.0, 0.060241, 0.113253, 0.016116, 0.966993, 0.040527], "label": "benign", "family": "benign", "source": "benign_benign_train"}
+{"vector": [1.666667, 0.14, 0.541663, 0.0, 0.02, 0.003856, 0.0, 0.362318, 0.0, 0.01, 0.125, 0.028497, 0.97771, 0.024414], "label": "benign", "family": "benign", "source": "benign_benign_train"}
+{"vector": [0.566667, 0.382353, 0.683934, 0.0, 0.0, 0.045368, 0.0, 3.569729, 0.0, 0.117647, 0.117647, 0.014599, 0.72583, 0.008301], "label": "benign", "family": "benign", "source": "benign_benign_train"}
+{"vector": [0.25, 0.6, 0.748225, 0.0, 0.0, 0.025709, 0.0, 5.787058, 0.0, 0.066667, 0.106667, 0.018519, 0.864974, 0.003662], "label": "benign", "family": "benign", "source": "benign_benign_train"}
+{"vector": [0.033333, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.15, 0.0, 1.0, 0.000488], "label": "benign", "family": "benign", "source": "benign_benign_train"}
+{"vector": [16.7, 0.016966, 0.388052, 0.147705, 0.0, 0.0, 0.0, 0.00486, 0.0, 0.0, 0.137126, 0.008732, 0.937842, 0.244629], "label": "benign", "family": "hardneg", "source": "benign_hardneg_train"}
+{"vector": [5.066667, 0.032895, 0.214677, 0.006579, 0.0, 0.0, 0.0, 0.087755, 0.0, 0.0, 0.167434, 0.000726, 0.987475, 0.074219], "label": "benign", "family": "hardneg", "source": "benign_hardneg_train"}
+{"vector": [0.1, 0.333333, 0.386853, 0.0, 0.0, 0.0, 0.0, 0.020717, 0.0, 0.0, 0.2, 0.0, 0.0, 0.001465], "label": "benign", "family": "hardneg", "source": "benign_hardneg_train"}
