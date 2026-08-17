@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # 1. StealthWall Control Plane & Operations Dashboard
+  dashboard:
+    build: .
+    container_name: stealthwall-dashboard
+    ports:
+      - "9377:9377"
+    environment:
+      - STEALTHWALL_ALLOW_NO_IPTABLES=1
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - redis
+    volumes:
+      - ./data:/app/data
+      - ./models/coldstart/artifacts:/app/models/coldstart/artifacts
+    restart: unless-stopped
+
+  # 2. Redis Distributed Sliding Window Store
+  redis:
+    image: redis:7-alpine
+    container_name: stealthwall-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  # 3. Prometheus Metrics Collector
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: stealthwall-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - dashboard
+    restart: unless-stopped
