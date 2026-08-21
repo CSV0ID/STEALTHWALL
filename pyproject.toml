@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stealthwall"
+version = "5.0.0"
+description = "Self-Hosted ML-Driven Intrusion Prevention Middleware & Web Application Firewall"
+readme = "README.md"
+authors = [
+    { name = "Chinmay Shinde" }
+]
+license = { text = "MIT" }
+dependencies = [
+    "starlette>=0.36",
+    "fastapi>=0.110",
+    "uvicorn>=0.28",
+    "numpy>=1.24",
+    "tabulate>=0.9.0",
+]
+
+[project.optional-dependencies]
+ml = ["onnxruntime>=1.17", "skl2onnx>=1.16", "onnxmltools>=1.12", "lightgbm>=4.0", "xgboost>=2.0"]
+redis = ["redis>=5.0"]
+monitoring = ["prometheus-client>=0.20"]
+all = [
+    "onnxruntime>=1.17",
+    "redis>=5.0",
+    "prometheus-client>=0.20",
+    "websockets>=12.0",
+    "scikit-learn>=1.4",
+]
+
+[project.scripts]
+stealthwall = "stealthwall_cli:main"
+
+[tool.setuptools.packages.find]
+include = ["stealthwall*", "block_engine*", "models*", "dashboard*", "config*", "middleware*"]
