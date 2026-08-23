@@ -61,11 +61,11 @@ app.listen(3000);
 
 ---
 
-## CLI Usage
+## CLI & Operations Console
 
 ```bash
 # Launch visual monitoring dashboard and WebSocket feed
-stealthwall dashboard --port 9377
+stealthwall dashboard --port 8000
 
 # Run simulated attack traffic against a target
 stealthwall attack --tool sqlmap --target http://localhost:8000
@@ -76,6 +76,23 @@ stealthwall status
 # Run full test suite and cross-language parity assertions
 stealthwall test
 ```
+
+### Dashboard Authentication & Docker
+
+When running the dashboard in production, configure admin credentials via environment variables:
+
+```bash
+export STEALTHWALL_ADMIN_USER="admin"
+export STEALTHWALL_ADMIN_PASSWORD="YourStrongPassword123!"
+stealthwall dashboard --port 8000
+```
+
+Or deploy the complete stack (Dashboard + Redis + Prometheus) via Docker Compose:
+
+```bash
+docker compose up -d
+```
+Visit `http://localhost:8000` to access the real-time dark-theme Operations Console and live incident stream.
 
 ---
 
