@@ -51,24 +51,26 @@ body {
 .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; width: 100%; }
 
 h1, h2, h3, h4 {
-  color: #ffffff;
+  color: #000000 !important;
+  -webkit-text-stroke: 1.3px #ffffff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.75), 0 0 30px rgba(255, 255, 255, 0.35);
   letter-spacing: -0.02em;
 }
 
 .gradient-text, .gradient-headline {
-  background: linear-gradient(135deg, #60a5fa 0%, #38bdf8 45%, #c084fc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #000000 !important;
+  -webkit-text-stroke: 1.5px #ffffff;
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.85), 0 0 35px rgba(255, 255, 255, 0.4);
   display: inline-block;
-  font-weight: 800;
+  font-weight: 900;
 }
 
 .gradient-text-cyan {
-  background: linear-gradient(135deg, #38bdf8 0%, #34d399 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #000000 !important;
+  -webkit-text-stroke: 1.5px #ffffff;
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.85), 0 0 35px rgba(255, 255, 255, 0.4);
   display: inline-block;
-  font-weight: 800;
+  font-weight: 900;
 }
 
 /* Liquid Glass Badge */
@@ -237,11 +239,13 @@ nav {
 
 .hero h1 {
   font-size: 3.25rem;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: -0.025em;
   line-height: 1.18;
   margin: 1.25rem 0 1rem;
-  color: #ffffff;
+  color: #000000 !important;
+  -webkit-text-stroke: 1.5px #ffffff;
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.8), 0 0 35px rgba(255, 255, 255, 0.4);
 }
 
 .hero p {
@@ -463,9 +467,11 @@ nav {
 
 .feature-card h3 {
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 0.75rem;
-  color: #fff;
+  color: #000000 !important;
+  -webkit-text-stroke: 1px #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
 }
 
 .feature-card p {
@@ -486,10 +492,12 @@ section {
 
 .section-title h2 {
   font-size: 2.25rem;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: -0.02em;
   margin-bottom: 0.75rem;
-  color: #ffffff;
+  color: #000000 !important;
+  -webkit-text-stroke: 1.3px #ffffff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.75), 0 0 30px rgba(255, 255, 255, 0.35);
 }
 
 .section-title p {
