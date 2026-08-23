@@ -29,58 +29,58 @@
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    // 3. Central Holographic Core (Icosahedron - High-Vibrancy Cyan & Emerald)
+    // 3. Central Holographic Core (Icosahedron - Frosted Glass & Pearl-Ice Blue)
     const coreGeo = new THREE.IcosahedronGeometry(6.5, 1);
     const coreMat = new THREE.MeshBasicMaterial({
-      color: 0x06b6d4, // Neon Cyan
+      color: 0x7dd3fc, // Frosted Ice Blue
       wireframe: true,
       transparent: true,
-      opacity: 0.85,
+      opacity: 0.65,
     });
     coreIcosahedron = new THREE.Mesh(coreGeo, coreMat);
     scene.add(coreIcosahedron);
 
-    // Inner Glowing Core Node (Electric Emerald Core)
+    // Inner Glowing Core Node (Refined Liquid Sapphire Core)
     const innerGeo = new THREE.IcosahedronGeometry(3.6, 2);
     const innerMat = new THREE.MeshBasicMaterial({
-      color: 0x10b981, // Electric Emerald
+      color: 0x38bdf8, // Liquid Sapphire
       wireframe: true,
       transparent: true,
-      opacity: 0.95,
+      opacity: 0.85,
     });
     const innerCore = new THREE.Mesh(innerGeo, innerMat);
     coreIcosahedron.add(innerCore);
 
-    // 4. Outer Defense Lattice Sphere (Represents Kernel iptables Gate - Cyber Blue)
+    // 4. Outer Defense Lattice Sphere (Subtle Smoked Glass Shell)
     const outerGeo = new THREE.SphereGeometry(10.5, 16, 16);
     const outerMat = new THREE.MeshBasicMaterial({
-      color: 0x3b82f6, // Electric Blue
+      color: 0x64748b, // Smoked Platinum
       wireframe: true,
       transparent: true,
-      opacity: 0.35,
+      opacity: 0.25,
     });
     outerWireSphere = new THREE.Mesh(outerGeo, outerMat);
     scene.add(outerWireSphere);
 
-    // 5. Equatorial Rotating Threat Intel Ring (Neon Purple Orbit)
+    // 5. Equatorial Rotating Threat Intel Ring (Frosted Pearl Ring)
     const ringGeo = new THREE.TorusGeometry(13.5, 0.15, 8, 64);
     const ringMat = new THREE.MeshBasicMaterial({
-      color: 0xa855f7, // Neon Purple
+      color: 0xe0f2fe, // Frosted Pearl
       transparent: true,
-      opacity: 0.75,
+      opacity: 0.45,
     });
     ringMesh = new THREE.Mesh(ringGeo, ringMat);
     ringMesh.rotation.x = Math.PI / 2.3;
     scene.add(ringMesh);
 
-    // 6. Sliding-Window 14-Feature Node Cloud (Dual Emerald & Violet Particles)
-    const particleCount = 260;
+    // 6. Sliding-Window 14-Feature Node Cloud (Dual Pearl-White & Ice-Blue Particles)
+    const particleCount = 240;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
 
-    const emeraldColor = new THREE.Color(0x34d399); // Soft Mint/Emerald
-    const violetColor = new THREE.Color(0xa78bfa);  // Soft Violet
+    const pearlColor = new THREE.Color(0xf8fafc); // Crisp Pearl White
+    const iceColor = new THREE.Color(0x7dd3fc);   // Frosted Ice Blue
 
     for (let i = 0; i < particleCount; i++) {
       const u = Math.random();
@@ -97,7 +97,7 @@
       positions[i * 3 + 1] = y;
       positions[i * 3 + 2] = z;
 
-      const c = (i % 2 === 0) ? emeraldColor : violetColor;
+      const c = (i % 2 === 0) ? pearlColor : iceColor;
       colors[i * 3] = c.r;
       colors[i * 3 + 1] = c.g;
       colors[i * 3 + 2] = c.b;
@@ -110,7 +110,7 @@
       size: 0.45,
       vertexColors: true,
       transparent: true,
-      opacity: 0.55,
+      opacity: 0.65,
     });
 
     particleShield = new THREE.Points(geometry, particleMat);
