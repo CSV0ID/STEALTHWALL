@@ -32,18 +32,53 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: var(--bg);
+  background-color: #060911;
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
-  background-image: 
-    radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.08) 0%, transparent 55%),
-    radial-gradient(circle at 15% 30%, rgba(99, 102, 241, 0.06) 0%, transparent 45%),
-    radial-gradient(circle at 85% 65%, rgba(14, 165, 233, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 50% 100%, rgba(30, 41, 59, 0.4) 0%, transparent 60%);
+  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-image: 
+    radial-gradient(circle at 12% 18%, rgba(225, 29, 72, 0.22) 0%, transparent 45%),
+    radial-gradient(circle at 88% 14%, rgba(37, 99, 235, 0.28) 0%, transparent 50%),
+    radial-gradient(circle at 50% 48%, rgba(147, 51, 234, 0.2) 0%, transparent 55%),
+    radial-gradient(circle at 18% 78%, rgba(6, 182, 212, 0.22) 0%, transparent 45%),
+    radial-gradient(circle at 82% 82%, rgba(225, 29, 72, 0.18) 0%, transparent 50%),
+    radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.25) 0%, transparent 55%);
+  background-attachment: fixed;
+}
+
+/* Chromatic Liquid Glass Ambient Light Refraction */
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(ellipse at 25% 25%, rgba(225, 29, 72, 0.2), transparent 40%),
+    radial-gradient(ellipse at 75% 20%, rgba(37, 99, 235, 0.26), transparent 45%),
+    radial-gradient(ellipse at 35% 75%, rgba(6, 182, 212, 0.18), transparent 40%),
+    radial-gradient(ellipse at 80% 70%, rgba(168, 85, 247, 0.22), transparent 45%);
+  filter: blur(85px);
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 0;
+  animation: liquidGlassShift 22s ease-in-out infinite alternate;
+}
+
+@keyframes liquidGlassShift {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate(4%, -3%) rotate(4deg) scale(1.04); }
+  100% { transform: translate(-3%, 4%) rotate(-3deg) scale(0.98); }
+}
+
+nav, section, footer {
+  position: relative;
+  z-index: 2;
 }
 
 /* Typography & General Utilities */
@@ -380,13 +415,17 @@ nav {
 
 /* Liquid Glass Cards & HUD */
 .glow-card, .feature-card, .sim-card, .table-card, .code-card {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid var(--glass-border);
-  border-top: 1px solid var(--glass-border-top);
-  border-radius: 1.25rem;
-  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.18), inset 0 -1px 2px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 60%, rgba(255, 255, 255, 0.035) 100%);
+  backdrop-filter: blur(30px) saturate(200%);
+  -webkit-backdrop-filter: blur(30px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 1px solid rgba(255, 255, 255, 0.38);
+  border-left: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 1.35rem;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.75),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.6);
   position: relative;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -394,9 +433,13 @@ nav {
 
 .feature-card:hover, .glow-card:hover {
   transform: translateY(-4px);
-  border-color: var(--glass-border-hover);
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.025) 100%);
-  box-shadow: 0 25px 55px -10px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.32);
+  border-top-color: rgba(255, 255, 255, 0.55);
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 60%, rgba(255, 255, 255, 0.05) 100%);
+  box-shadow: 
+    0 35px 70px -10px rgba(0, 0, 0, 0.85),
+    0 0 35px rgba(56, 189, 248, 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.45);
 }
 
 /* 3D Holographic Display Card */
