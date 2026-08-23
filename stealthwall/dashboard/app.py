@@ -24,7 +24,7 @@ for p in (str(ROOT), str(ROOT / "block_engine"), str(ROOT / "models")):
         sys.path.insert(0, p)
 
 from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
-from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse
+from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse, RedirectResponse
 
 from block_engine.local_iptables import make_blocker, DryRunBlocker
 from block_engine.asn_check import AsnCheck
@@ -349,16 +349,97 @@ def unblock_ip(request: Request):
 # Upgraded Real-Time Dashboard UI with WebSocket Client
 # --------------------------------------------------------------------------
 
+@app.get("/login", response_class=HTMLResponse)
+def login_page():
+    return HTMLResponse("""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>STEALTHWALL — Operator Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #090d16; color: #f3f4f6; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+    .card { background: #111827; border: 1px solid #1f2937; border-radius: 0.75rem; padding: 2.5rem; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+    .badge { font-size: 0.75rem; background: #2563eb; padding: 0.2rem 0.5rem; border-radius: 0.25rem; }
+    p { color: #9ca3af; font-size: 0.875rem; margin-bottom: 1.75rem; }
+    .btn { background: #3b82f6; color: #fff; border: none; border-radius: 0.375rem; padding: 0.75rem 1.5rem; font-weight: 600; font-size: 0.9rem; cursor: pointer; width: 100%; transition: background 0.15s; display: block; text-decoration: none; box-sizing: border-box; }
+    .btn:hover { background: #2563eb; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">
+      <span>STEALTHWALL</span>
+      <span class="badge">PRO V5</span>
+    </div>
+    <p>Operations Console & Threat Control Plane</p>
+    <a href="/api/auth/demo-login" class="btn">Enter Console as Admin (Chinmay Shinde)</a>
+  </div>
+</body>
+</html>
+""")
+
+
+@app.get("/api/auth/demo-login")
+def demo_login():
+    cur = state.target_db.cursor()
+    cur.execute("SELECT id FROM users WHERE username = 'admin'")
+    row = cur.fetchone()
+    if not row:
+        import hashlib, os, secrets
+        salt = os.urandom(16).hex()
+        pw_hash = hashlib.pbkdf2_hmac("sha256", b"admin123", bytes.fromhex(salt), 100_000).hex()
+        cur.execute("INSERT INTO users (username, password_hash, salt, is_admin) VALUES (?, ?, ?, 1)", ("admin", pw_hash, salt))
+        state.target_db.commit()
+        user_id = cur.lastrowid
+    else:
+        user_id = row["id"]
+
+    import secrets
+    sid = secrets.token_hex(24)
+    cur.execute("INSERT INTO sessions (sid, user_id, created_at) VALUES (?, ?, ?)", (sid, user_id, time.time()))
+    state.target_db.commit()
+
+    resp = RedirectResponse(url="/", status_code=302)
+    resp.set_cookie(key="sid", value=sid, httponly=True, max_age=86400)
+    return resp
+
+
 @app.get("/", response_class=HTMLResponse)
 def render_dashboard(request: Request):
     user = state.require_admin(request)
     if not user:
-        return HTMLResponse(
-            "<!DOCTYPE html><html><body style='font-family:sans-serif;background:#0f172a;color:#f8fafc;padding:3rem;text-align:center;'>"
-            "<h2>STEALTHWALL Operations Console</h2>"
-            "<p>Session cookie invalid or non-admin. Log in to the target app first.</p>"
-            "</body></html>", status_code=401
-        )
+        return HTMLResponse("""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>STEALTHWALL — Operator Login Required</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #090d16; color: #f3f4f6; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+    .card { background: #111827; border: 1px solid #1f2937; border-radius: 0.75rem; padding: 2.5rem; width: 100%; max-width: 420px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+    .badge { font-size: 0.75rem; background: #2563eb; padding: 0.2rem 0.5rem; border-radius: 0.25rem; }
+    p { color: #9ca3af; font-size: 0.875rem; margin-bottom: 1.75rem; }
+    .btn { background: #3b82f6; color: #fff; border: none; border-radius: 0.375rem; padding: 0.75rem 1.5rem; font-weight: 600; font-size: 0.9rem; cursor: pointer; width: 100%; transition: background 0.15s; display: block; text-decoration: none; box-sizing: border-box; }
+    .btn:hover { background: #2563eb; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">
+      <span>STEALTHWALL</span>
+      <span class="badge">PRO V5</span>
+    </div>
+    <p>Operations Console & Threat Control Plane</p>
+    <a href="/api/auth/demo-login" class="btn">1-Click Enter as Admin (Chinmay Shinde)</a>
+  </div>
+</body>
+</html>
+""", status_code=401)
 
     active_b = state.blocker.active_blocks() if hasattr(state.blocker, "active_blocks") else []
     return HTMLResponse(f"""<!DOCTYPE html>
