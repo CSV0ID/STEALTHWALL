@@ -58,17 +58,17 @@ h1, h2, h3, h4 {
 }
 
 .gradient-text, .gradient-headline {
-  color: #000000 !important;
-  -webkit-text-stroke: 1.5px #ffffff;
-  text-shadow: 0 0 18px rgba(255, 255, 255, 0.85), 0 0 35px rgba(255, 255, 255, 0.4);
+  color: #030712 !important;
+  -webkit-text-stroke: 1.4px #38bdf8;
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.85), 0 0 40px rgba(0, 242, 254, 0.5);
   display: inline-block;
   font-weight: 900;
 }
 
 .gradient-text-cyan {
-  color: #000000 !important;
-  -webkit-text-stroke: 1.5px #ffffff;
-  text-shadow: 0 0 18px rgba(255, 255, 255, 0.85), 0 0 35px rgba(255, 255, 255, 0.4);
+  color: #030712 !important;
+  -webkit-text-stroke: 1.4px #34d399;
+  text-shadow: 0 0 20px rgba(52, 211, 153, 0.85), 0 0 40px rgba(16, 185, 129, 0.5);
   display: inline-block;
   font-weight: 900;
 }
