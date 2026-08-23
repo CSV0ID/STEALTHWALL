@@ -350,8 +350,9 @@ def unblock_ip(request: Request):
 # --------------------------------------------------------------------------
 
 @app.get("/login", response_class=HTMLResponse)
-def login_page():
-    return HTMLResponse("""<!DOCTYPE html>
+def login_page(error: str = None):
+    err_html = f'<div style="background:rgba(239,68,68,0.15);color:#f87171;border:1px solid rgba(239,68,68,0.3);padding:0.5rem;border-radius:0.375rem;font-size:0.8rem;margin-bottom:1rem;">{error}</div>' if error else ''
+    return HTMLResponse(f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -359,13 +360,19 @@ def login_page():
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; background: #090d16; color: #f3f4f6; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
-    .card { background: #111827; border: 1px solid #1f2937; border-radius: 0.75rem; padding: 2.5rem; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-    .logo { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
-    .badge { font-size: 0.75rem; background: #2563eb; padding: 0.2rem 0.5rem; border-radius: 0.25rem; }
-    p { color: #9ca3af; font-size: 0.875rem; margin-bottom: 1.75rem; }
-    .btn { background: #3b82f6; color: #fff; border: none; border-radius: 0.375rem; padding: 0.75rem 1.5rem; font-weight: 600; font-size: 0.9rem; cursor: pointer; width: 100%; transition: background 0.15s; display: block; text-decoration: none; box-sizing: border-box; }
-    .btn:hover { background: #2563eb; }
+    body {{ font-family: 'Inter', sans-serif; background: #090d16; color: #f3f4f6; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }}
+    .card {{ background: #111827; border: 1px solid #1f2937; border-radius: 0.75rem; padding: 2.5rem; width: 100%; max-width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }}
+    .logo {{ font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }}
+    .badge {{ font-size: 0.75rem; background: #2563eb; padding: 0.2rem 0.5rem; border-radius: 0.25rem; }}
+    p {{ color: #9ca3af; font-size: 0.875rem; margin-bottom: 1.5rem; text-align: center; }}
+    .form-group {{ margin-bottom: 1.25rem; text-align: left; }}
+    label {{ display: block; font-size: 0.8125rem; font-weight: 600; color: #d1d5db; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.05em; }}
+    input {{ width: 100%; background: #1f2937; border: 1px solid #374151; color: #fff; padding: 0.65rem 0.85rem; border-radius: 0.375rem; font-size: 0.9rem; box-sizing: border-box; }}
+    input:focus {{ outline: none; border-color: #3b82f6; ring: 2px solid #3b82f6; }}
+    .btn {{ background: #3b82f6; color: #fff; border: none; border-radius: 0.375rem; padding: 0.75rem 1.5rem; font-weight: 600; font-size: 0.9rem; cursor: pointer; width: 100%; transition: background 0.15s; display: block; text-decoration: none; box-sizing: border-box; text-align: center; }}
+    .btn:hover {{ background: #2563eb; }}
+    .btn-secondary {{ background: #1f2937; color: #9ca3af; border: 1px solid #374151; margin-top: 0.75rem; }}
+    .btn-secondary:hover {{ background: #374151; color: #fff; }}
   </style>
 </head>
 <body>
@@ -375,27 +382,61 @@ def login_page():
       <span class="badge">PRO V5</span>
     </div>
     <p>Operations Console & Threat Control Plane</p>
-    <a href="/api/auth/demo-login" class="btn">Enter Console as Admin (Chinmay Shinde)</a>
+    {err_html}
+    <form action="/api/auth/login" method="POST">
+      <div class="form-group">
+        <label>Admin Username</label>
+        <input type="text" name="username" placeholder="admin" required autofocus>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn">Sign In as Admin</button>
+    </form>
   </div>
 </body>
 </html>
 """)
 
 
-@app.get("/api/auth/demo-login")
-def demo_login():
+@app.post("/api/auth/login")
+async def handle_login(request: Request):
+    form = await request.form()
+    username = form.get("username", "").strip()
+    password = form.get("password", "").strip()
+
+    # 1. Check environment override
+    env_admin = os.getenv("STEALTHWALL_ADMIN_USER", "admin")
+    env_pass = os.getenv("STEALTHWALL_ADMIN_PASSWORD", "admin123")
+
     cur = state.target_db.cursor()
-    cur.execute("SELECT id FROM users WHERE username = 'admin'")
+    cur.execute("SELECT id, password_hash, salt, is_admin FROM users WHERE username = ?", (username,))
     row = cur.fetchone()
-    if not row:
-        import hashlib, os, secrets
-        salt = os.urandom(16).hex()
-        pw_hash = hashlib.pbkdf2_hmac("sha256", b"admin123", bytes.fromhex(salt), 100_000).hex()
-        cur.execute("INSERT INTO users (username, password_hash, salt, is_admin) VALUES (?, ?, ?, 1)", ("admin", pw_hash, salt))
-        state.target_db.commit()
-        user_id = cur.lastrowid
-    else:
-        user_id = row["id"]
+
+    authenticated = False
+    user_id = None
+
+    if username == env_admin and password == env_pass:
+        authenticated = True
+        if not row:
+            import hashlib, secrets
+            salt = os.urandom(16).hex()
+            pw_hash = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"), bytes.fromhex(salt), 100_000).hex()
+            cur.execute("INSERT INTO users (username, password_hash, salt, is_admin) VALUES (?, ?, ?, 1)", (username, pw_hash, salt))
+            state.target_db.commit()
+            user_id = cur.lastrowid
+        else:
+            user_id = row["id"]
+    elif row and row["is_admin"]:
+        import hashlib
+        h = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"), bytes.fromhex(row["salt"]), 100_000).hex()
+        if h == row["password_hash"]:
+            authenticated = True
+            user_id = row["id"]
+
+    if not authenticated:
+        return login_page(error="Invalid administrator credentials.")
 
     import secrets
     sid = secrets.token_hex(24)
@@ -407,39 +448,23 @@ def demo_login():
     return resp
 
 
+@app.get("/logout")
+def handle_logout(request: Request):
+    sid = request.cookies.get("sid")
+    if sid:
+        cur = state.target_db.cursor()
+        cur.execute("DELETE FROM sessions WHERE sid = ?", (sid,))
+        state.target_db.commit()
+    resp = RedirectResponse(url="/login", status_code=302)
+    resp.delete_cookie(key="sid")
+    return resp
+
+
 @app.get("/", response_class=HTMLResponse)
 def render_dashboard(request: Request):
     user = state.require_admin(request)
     if not user:
-        return HTMLResponse("""<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>STEALTHWALL — Operator Login Required</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Inter', sans-serif; background: #090d16; color: #f3f4f6; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
-    .card { background: #111827; border: 1px solid #1f2937; border-radius: 0.75rem; padding: 2.5rem; width: 100%; max-width: 420px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-    .logo { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
-    .badge { font-size: 0.75rem; background: #2563eb; padding: 0.2rem 0.5rem; border-radius: 0.25rem; }
-    p { color: #9ca3af; font-size: 0.875rem; margin-bottom: 1.75rem; }
-    .btn { background: #3b82f6; color: #fff; border: none; border-radius: 0.375rem; padding: 0.75rem 1.5rem; font-weight: 600; font-size: 0.9rem; cursor: pointer; width: 100%; transition: background 0.15s; display: block; text-decoration: none; box-sizing: border-box; }
-    .btn:hover { background: #2563eb; }
-  </style>
-</head>
-<body>
-  <div class="card">
-    <div class="logo">
-      <span>STEALTHWALL</span>
-      <span class="badge">PRO V5</span>
-    </div>
-    <p>Operations Console & Threat Control Plane</p>
-    <a href="/api/auth/demo-login" class="btn">1-Click Enter as Admin (Chinmay Shinde)</a>
-  </div>
-</body>
-</html>
-""", status_code=401)
+        return RedirectResponse(url="/login", status_code=302)
 
     active_b = state.blocker.active_blocks() if hasattr(state.blocker, "active_blocks") else []
     return HTMLResponse(f"""<!DOCTYPE html>

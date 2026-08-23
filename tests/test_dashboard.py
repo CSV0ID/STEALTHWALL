@@ -38,12 +38,29 @@ def test_dashboard_internal_decide_control_plane(client):
 
 
 def test_dashboard_unauthenticated_access_rejected(client):
-    # Without valid target app admin cookie, endpoints must return 401
-    res_index = client.get("/")
-    assert res_index.status_code == 401
+    # Without valid target app admin cookie, root redirects to login and API endpoints return 401
+    res_index = client.get("/", follow_redirects=False)
+    assert res_index.status_code in (302, 401)
 
     res_feed = client.get("/api/feed")
     assert res_feed.status_code == 401
 
     res_stats = client.get("/api/stats")
     assert res_stats.status_code == 401
+
+
+def test_dashboard_form_login_success_and_logout(client):
+    # Test valid administrator login via form
+    res_login = client.post("/api/auth/login", data={"username": "admin", "password": "admin123"}, follow_redirects=False)
+    assert res_login.status_code == 302
+    assert "sid" in res_login.cookies
+
+    # Authenticated access to dashboard
+    client.cookies.set("sid", res_login.cookies["sid"])
+    res_dash = client.get("/")
+    assert res_dash.status_code == 200
+    assert "STEALTHWALL" in res_dash.text
+
+    # Logout
+    res_logout = client.get("/logout", follow_redirects=False)
+    assert res_logout.status_code == 302
