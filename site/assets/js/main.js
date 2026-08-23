@@ -200,6 +200,11 @@ function runAttackSim() {
   const type = select.value;
   const data = attackDatabase[type] || attackDatabase.benign;
 
+  // Trigger 3D WebGL Shield Deflection Animation
+  if (typeof window.trigger3DShieldDeflection === 'function') {
+    window.trigger3DShieldDeflection(type);
+  }
+
   const scoreEl = document.getElementById('metricScore');
   const actEl = document.getElementById('metricAction');
   const latEl = document.getElementById('metricLatency');
@@ -272,6 +277,10 @@ function analyzeCustomPayload() {
     isAttack = true;
     reason = 'OS Command Injection & File Traversal Matched';
     score = 0.991;
+  }
+
+  if (typeof window.trigger3DShieldDeflection === 'function') {
+    window.trigger3DShieldDeflection(isZday ? 'zday_ssrf' : isAttack ? 'sqlmap' : 'benign');
   }
 
   setTimeout(() => {

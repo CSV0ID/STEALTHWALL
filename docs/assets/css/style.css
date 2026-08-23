@@ -189,11 +189,28 @@ nav {
   transform: translateY(-1px);
 }
 
-/* Hero Section */
+/* Hero Section & 3D Three.js Canvas */
 .hero {
   padding: 5.5rem 0 4.5rem;
   text-align: center;
   position: relative;
+  overflow: hidden;
+}
+
+#three-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.75;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
 }
 
 .hero h1 {
