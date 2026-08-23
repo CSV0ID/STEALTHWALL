@@ -17,8 +17,9 @@
 
     // 1. Scene & Camera Setup for Dedicated Holographic Card
     scene = new THREE.Scene();
-    const w = container.clientWidth || 400;
-    const h = container.clientHeight || 340;
+    const rect = container.getBoundingClientRect();
+    const w = rect.width > 50 ? rect.width : (container.clientWidth || 440);
+    const h = rect.height > 50 ? rect.height : (container.clientHeight || 320);
     camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 1000);
     camera.position.z = 35;
 
@@ -126,8 +127,9 @@
   function onWindowResize() {
     const container = document.getElementById('three-hero-bg');
     if (!container || !renderer || !camera) return;
-    const w = container.clientWidth || 400;
-    const h = container.clientHeight || 340;
+    const rect = container.getBoundingClientRect();
+    const w = rect.width > 50 ? rect.width : (container.clientWidth || 440);
+    const h = rect.height > 50 ? rect.height : (container.clientHeight || 320);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h);

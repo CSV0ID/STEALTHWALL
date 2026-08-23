@@ -219,15 +219,14 @@ nav {
 
 /* Hero Section — High-Impact Two-Column Cyber Architecture */
 .hero {
-  padding: 5rem 0 4rem;
+  padding: 5.5rem 0 4.5rem;
   position: relative;
-  overflow: hidden;
 }
 
 .hero-grid {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
-  gap: 3rem;
+  gap: 3.5rem;
   align-items: center;
   text-align: left;
 }
@@ -241,17 +240,19 @@ nav {
 .hero h1 {
   font-size: 3.25rem;
   font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
   margin: 1.25rem 0 1rem;
-  color: #fff;
+  color: #ffffff;
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, #38bdf8 0%, #60a5fa 45%, #a78bfa 100%);
+.gradient-headline {
+  color: #38bdf8;
+  background: linear-gradient(135deg, #00f2fe 0%, #38bdf8 50%, #818cf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
+  font-weight: 800;
 }
 
 .hero p {
@@ -259,7 +260,7 @@ nav {
   color: #94a3b8;
   line-height: 1.7;
   margin-bottom: 2rem;
-  max-width: 600px;
+  max-width: 580px;
 }
 
 .hero-actions {
@@ -272,9 +273,12 @@ nav {
 /* 3D Holographic Display Card */
 .hero-3d-card {
   width: 100%;
-  height: 480px;
+  max-width: 480px;
+  height: 440px;
   display: flex;
   flex-direction: column;
+  position: relative;
+  margin: 0 auto;
 }
 
 .hero-3d-header {
@@ -286,15 +290,15 @@ nav {
   font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.05em;
-  background: rgba(6, 9, 19, 0.4);
+  background: rgba(6, 9, 19, 0.6);
 }
 
 .hero-3d-canvas-wrap {
   flex: 1;
   position: relative;
   width: 100%;
-  height: 100%;
-  min-height: 340px;
+  height: 320px;
+  overflow: hidden;
 }
 
 #three-hero-bg {
@@ -303,6 +307,14 @@ nav {
   left: 0;
   width: 100%;
   height: 100%;
+  min-height: 320px;
+  display: block;
+}
+
+#three-hero-bg canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
 }
 
 .hero-3d-footer {
@@ -313,7 +325,7 @@ nav {
   align-items: center;
   font-size: 0.75rem;
   color: var(--text-dim);
-  background: rgba(6, 9, 19, 0.4);
+  background: rgba(6, 9, 19, 0.6);
 }
 
 @media (max-width: 960px) {
@@ -331,7 +343,8 @@ nav {
     justify-content: center;
   }
   .hero-3d-card {
-    height: 400px;
+    height: 380px;
+    max-width: 100%;
   }
 }
 
