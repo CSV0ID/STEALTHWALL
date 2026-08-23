@@ -101,6 +101,7 @@ Visit `http://localhost:8000` to access the real-time dark-theme Operations Cons
 
 ## Documentation
 
+- [Production Deployment Architectures (Decoupled, Vercel, VPS)](docs/DEPLOYMENT_GUIDE.md)
 - [Publishing to PyPI & npm](docs/PUBLISHING_GUIDE.md)
 - [FastAPI / Python Integration](docs/INTEGRATION_PYTHON.md)
 - [Express / Node.js Integration](docs/INTEGRATION_NODEJS.md)
