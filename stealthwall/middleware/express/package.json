@@ -1,14 +1,33 @@
 {
   "name": "stealthwall",
   "version": "5.0.0",
-  "description": "ML-driven intrusion prevention middleware for Express - detects recon/scans, brute force, and injection patterns, blocks automatically with graduated response.",
+  "description": "ML-driven intrusion prevention middleware for Express - evaluates sliding-window behavioral threat patterns in sub-millisecond time with graduated response.",
   "main": "index.js",
-  "author": "Chinmay Shinde",
+  "author": "Chinmay Shinde <chinmayshinde247@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSV0ID/STEALTHWALL.git"
+  },
+  "homepage": "https://github.com/CSV0ID/STEALTHWALL#readme",
+  "bugs": {
+    "url": "https://github.com/CSV0ID/STEALTHWALL/issues"
+  },
+  "keywords": [
+    "security",
+    "waf",
+    "ips",
+    "ids",
+    "middleware",
+    "express",
+    "machine-learning",
+    "threat-detection",
+    "rate-limiting",
+    "ddos-protection"
+  ],
   "scripts": {
     "test": "node test/run_tests.js"
   },
-  "keywords": ["security", "ids", "ips", "middleware", "express", "ml"],
-  "license": "MIT",
   "dependencies": {
     "onnxruntime-node": "^1.17.0"
   },
