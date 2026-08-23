@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -8,9 +8,25 @@ version = "5.0.0"
 description = "Self-Hosted ML-Driven Intrusion Prevention Middleware & Web Application Firewall"
 readme = "README.md"
 authors = [
-    { name = "Chinmay Shinde" }
+    { name = "Chinmay Shinde", email = "chinmayshinde247@gmail.com" }
 ]
 license = { text = "MIT" }
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "Topic :: Security",
+    "Topic :: Internet :: WWW/HTTP :: WSGI :: Middleware",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Framework :: FastAPI",
+]
 dependencies = [
     "starlette>=0.36",
     "fastapi>=0.110",
@@ -31,8 +47,17 @@ all = [
     "scikit-learn>=1.4",
 ]
 
+[project.urls]
+Homepage = "https://github.com/CSV0ID/STEALTHWALL"
+Repository = "https://github.com/CSV0ID/STEALTHWALL"
+Documentation = "https://github.com/CSV0ID/STEALTHWALL/tree/main/docs"
+Issues = "https://github.com/CSV0ID/STEALTHWALL/issues"
+
 [project.scripts]
-stealthwall = "stealthwall_cli:main"
+stealthwall = "stealthwall.stealthwall_cli:main"
 
 [tool.setuptools.packages.find]
-include = ["stealthwall*", "block_engine*", "models*", "dashboard*", "config*", "middleware*"]
+include = ["stealthwall*"]
+
+[tool.setuptools.package-data]
+stealthwall = ["**/*"]

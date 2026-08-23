@@ -1,0 +1,2 @@
+[console_scripts]
+stealthwall = stealthwall.stealthwall_cli:main
