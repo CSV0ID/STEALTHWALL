@@ -93,6 +93,18 @@ def _open_target_db() -> sqlite3.Connection:
         "sid TEXT PRIMARY KEY, user_id INTEGER, created_at REAL, "
         "FOREIGN KEY(user_id) REFERENCES users(id))"
     )
+    conn.execute(
+        "CREATE TABLE IF NOT EXISTS dashboard_incidents ("
+        "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+        "ts REAL, ip TEXT, raw_score REAL, action TEXT, tier TEXT, "
+        "ttl_seconds REAL, reason TEXT, country TEXT, is_tor INTEGER, "
+        "is_datacenter INTEGER, is_zero_day INTEGER DEFAULT 0, "
+        "zero_day_detail TEXT DEFAULT '', asn INTEGER, isp TEXT)"
+    )
+    conn.execute(
+        "CREATE TABLE IF NOT EXISTS dashboard_metrics ("
+        "key TEXT PRIMARY KEY, value INTEGER)"
+    )
     conn.commit()
     return conn
 
@@ -112,10 +124,60 @@ class DashboardState:
             whitelist=self.whitelist, history=self.history,
             captcha_provider=self.captcha)
         self.reauth: dict[str, float] = {}
-        # Metrics counters
+        # Persistent metrics counters
         self.total_requests = 0
         self.blocked_requests = 0
         self.action_counts: Dict[str, int] = defaultdict(int)
+        self._load_persisted_metrics()
+
+    def _load_persisted_metrics(self) -> None:
+        try:
+            cur = self.target_db.cursor()
+            cur.execute("SELECT key, value FROM dashboard_metrics")
+            for row in cur.fetchall():
+                k, v = row["key"], row["value"]
+                if k == "total_requests":
+                    self.total_requests = int(v)
+                elif k == "blocked_requests":
+                    self.blocked_requests = int(v)
+                elif k.startswith("action:"):
+                    act = k.split("action:", 1)[1]
+                    self.action_counts[act] = int(v)
+        except Exception:
+            pass
+
+    def record_incident(self, event_payload: dict, score: float, decision) -> None:
+        try:
+            cur = self.target_db.cursor()
+            cur.execute(
+                "INSERT INTO dashboard_incidents ("
+                "ts, ip, raw_score, action, tier, ttl_seconds, reason, "
+                "country, is_tor, is_datacenter, is_zero_day, zero_day_detail, asn, isp) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (
+                    event_payload.get("ts", time.time()),
+                    event_payload.get("ip", ""),
+                    float(score),
+                    decision.action,
+                    decision.tier,
+                    float(decision.ttl_seconds),
+                    event_payload.get("reason", ""),
+                    event_payload.get("country", "XX"),
+                    int(event_payload.get("is_tor", False)),
+                    int(event_payload.get("is_datacenter", False)),
+                    int(event_payload.get("is_zero_day", False)),
+                    event_payload.get("zero_day_detail", ""),
+                    event_payload.get("asn"),
+                    event_payload.get("isp"),
+                )
+            )
+            # Update metrics
+            cur.execute("INSERT OR REPLACE INTO dashboard_metrics (key, value) VALUES ('total_requests', ?)", (self.total_requests,))
+            cur.execute("INSERT OR REPLACE INTO dashboard_metrics (key, value) VALUES ('blocked_requests', ?)", (self.blocked_requests,))
+            cur.execute("INSERT OR REPLACE INTO dashboard_metrics (key, value) VALUES (?, ?)", (f"action:{decision.action}", self.action_counts[decision.action]))
+            self.target_db.commit()
+        except Exception:
+            pass
 
     def require_admin(self, request: Request):
         sid = request.cookies.get("sid") or request.headers.get("x-session-id")
@@ -260,16 +322,25 @@ async def internal_decide(request: Request):
     data = await request.json()
     ip = data.get("ip", "")
     score = float(data.get("score", 0.0))
+    path = data.get("path", "")
+    payload = data.get("payload", "")
+    headers = data.get("headers", {})
+
+    # Enrich with threat intel and 0-Day / Novel Mutation Threat Engine
+    intel = threat_intel.resolve(ip, path=path, payload=payload, headers=headers)
+    asn_info = state.asn.classify(ip)
+
+    if intel.get("is_zero_day"):
+        score = max(score, 0.95)
 
     state.total_requests += 1
     decision = state.engine.decide_and_respond(ip, score)
+    if intel.get("is_zero_day") and not decision.reason:
+        decision.reason = f"0-Day Anomaly: {intel.get('zero_day_detail')}"
+
     state.action_counts[decision.action] += 1
     if decision.action in ("temp_block", "provisional_block", "long_cooldown_block"):
         state.blocked_requests += 1
-
-    # Enrich with threat intel
-    intel = threat_intel.resolve(ip)
-    asn_info = state.asn.classify(ip)
 
     event_payload = {
         "ts": time.time(),
@@ -278,13 +349,18 @@ async def internal_decide(request: Request):
         "action": decision.action,
         "tier": decision.tier,
         "ttl_seconds": decision.ttl_seconds,
-        "reason": decision.reason,
+        "reason": decision.reason or "Behavioral anomaly threshold exceeded",
         "country": intel.get("country", "XX"),
         "is_tor": intel.get("is_tor", False),
         "is_datacenter": intel.get("is_datacenter", False),
+        "is_zero_day": intel.get("is_zero_day", False),
+        "zero_day_detail": intel.get("zero_day_detail", ""),
         "asn": asn_info.get("asn"),
         "isp": asn_info.get("isp"),
     }
+
+    # Persist incident to SQLite target database
+    state.record_incident(event_payload, score, decision)
 
     # Broadcast event live over WebSockets
     await ws_manager.broadcast({"type": "incident", "data": event_payload})
@@ -310,6 +386,17 @@ def get_feed(request: Request, limit: int = 100):
     if not user:
         return JSONResponse({"error": "unauthorized"}, status_code=401)
 
+    cur = state.target_db.cursor()
+    cur.execute(
+        "SELECT ts, ip, raw_score, action, tier, ttl_seconds, reason, "
+        "country, is_tor, is_datacenter, is_zero_day, zero_day_detail, asn, isp "
+        "FROM dashboard_incidents ORDER BY id DESC LIMIT ?", (limit,)
+    )
+    rows = cur.fetchall()
+    if rows:
+        return [dict(r) for r in rows]
+
+    # Fallback to audit log file if table empty
     log_path = Path(AUDIT_LOG_PATH)
     if not log_path.is_absolute():
         log_path = ROOT / log_path
@@ -538,13 +625,14 @@ def render_dashboard(request: Request):
     .btn-danger:hover {{ background: #dc2626; }}
     .flag-badge {{ display: inline-flex; align-items: center; gap: 0.3rem; background: #1f2937; padding: 0.15rem 0.4rem; border-radius: 0.25rem; font-size: 0.75rem; }}
     .tor-badge {{ background: #7c3aed; color: #fff; font-size: 0.65rem; font-weight: bold; padding: 0.1rem 0.3rem; border-radius: 0.2rem; }}
+    .zday-badge {{ background: #db2777; color: #fff; font-size: 0.65rem; font-weight: bold; padding: 0.1rem 0.35rem; border-radius: 0.2rem; }}
   </style>
 </head>
 <body>
   <header>
     <div class="logo">
       <span>STEALTHWALL</span>
-      <span style="font-size: 0.75rem; background: #2563eb; padding: 0.15rem 0.5rem; border-radius: 0.25rem;">PRO V2</span>
+      <span style="font-size: 0.75rem; background: #2563eb; padding: 0.15rem 0.5rem; border-radius: 0.25rem;">PRO V5</span>
     </div>
     <div style="display: flex; gap: 1rem; align-items: center;">
       <div id="wsStatus" class="status-badge">
@@ -571,14 +659,14 @@ def render_dashboard(request: Request):
       </div>
       <div class="card">
         <div class="card-title">Threat Intel Engine</div>
-        <div class="card-value" style="font-size: 1.25rem; color: #a78bfa;">ACTIVE (GeoIP + Tor)</div>
+        <div class="card-value" style="font-size: 1.25rem; color: #a78bfa;">ACTIVE (GeoIP + Tor + 0-Day)</div>
       </div>
     </div>
 
     <div class="table-container">
       <div class="table-header">
         <h3 style="font-size: 1rem; font-weight: 600;">Real-Time Attack & Incident Stream</h3>
-        <span style="font-size: 0.75rem; color: var(--text-dim);">Auto-updating via WebSockets</span>
+        <span style="font-size: 0.75rem; color: var(--text-dim);">Auto-updating via WebSockets & Persistent SQLite</span>
       </div>
       <table>
         <thead>
@@ -636,12 +724,13 @@ def render_dashboard(request: Request):
       tr.style.animation = 'fadeIn 0.3s';
       
       const torBadge = ev.is_tor ? '<span class="tor-badge">TOR</span> ' : '';
+      const zdayBadge = ev.is_zero_day ? '<span class="zday-badge">0-DAY</span> ' : '';
       const flag = `<span class="flag-badge">${{ev.country || 'US'}}</span>`;
       const tierClass = 'tier-' + (ev.tier || 'low').toLowerCase().replace(' ', '_');
       
       tr.innerHTML = `
         <td style="color: var(--text-dim);">${{new Date(ev.ts * 1000).toLocaleTimeString()}}</td>
-        <td><strong>${{ev.ip}}</strong> ${{flag}} ${{torBadge}}</td>
+        <td><strong>${{ev.ip}}</strong> ${{flag}} ${{torBadge}} ${{zdayBadge}}</td>
         <td><span class="tier-badge ${{tierClass}}">${{ev.action || 'LOG'}}</span></td>
         <td><strong>${{(ev.raw_score || 0).toFixed(4)}}</strong></td>
         <td>${{ev.ttl_seconds ? ev.ttl_seconds + 's' : '—'}}</td>
@@ -654,12 +743,14 @@ def render_dashboard(request: Request):
 
     async function loadInitialFeed() {{
       try {{
-        const res = await fetch('/api/feed');
+        const res = await fetch('/api/feed?limit=25');
         if (res.ok) {{
           const events = await res.json();
           const tbody = document.getElementById('feedBody');
-          tbody.innerHTML = '';
-          events.slice(0, 20).forEach(ev => prependIncident(ev));
+          if (events && events.length > 0) {{
+            tbody.innerHTML = '';
+            events.reverse().forEach(ev => prependIncident(ev));
+          }}
         }}
       }} catch(e) {{}}
     }}

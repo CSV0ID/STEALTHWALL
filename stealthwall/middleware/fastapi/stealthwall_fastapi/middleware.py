@@ -107,6 +107,31 @@ class StealthWallMiddleware:
             return
 
         status_holder = {"status": 0}
+        payload_holder = {"payload": ""}
+
+        app_receive = receive
+        method = scope.get("method", "GET").upper()
+        if method in ("POST", "PUT", "PATCH", "DELETE"):
+            try:
+                buffered_messages = []
+                body_bytes = b""
+                more_body = True
+                while more_body and len(body_bytes) < 4096:
+                    msg = await receive()
+                    buffered_messages.append(msg)
+                    body_bytes += msg.get("body", b"")
+                    more_body = msg.get("more_body", False)
+
+                payload_holder["payload"] = body_bytes.decode("utf-8", "replace")[:512]
+
+                async def replay_receive():
+                    if buffered_messages:
+                        return buffered_messages.pop(0)
+                    return await receive()
+
+                app_receive = replay_receive
+            except Exception:
+                app_receive = receive
 
         async def send_wrapper(message):
             if message["type"] == "http.response.start":
@@ -114,10 +139,10 @@ class StealthWallMiddleware:
             await send(message)
 
         try:
-            await self.app(scope, receive, send_wrapper)
+            await self.app(scope, app_receive, send_wrapper)
         finally:
             await asyncio.to_thread(self._post_score, scope, ip,
-                                    status_holder["status"], start)
+                                    status_holder["status"], start, payload_holder["payload"])
 
     # ------------------------------------------------------------- client IP
     def _client_ip(self, scope) -> str:
@@ -163,7 +188,7 @@ class StealthWallMiddleware:
         return None
 
     # ----------------------------------------------------------- post-response
-    def _post_score(self, scope, ip: str, status: int, start: float) -> None:
+    def _post_score(self, scope, ip: str, status: int, start: float, payload: str = "") -> None:
         try:
             headers = {k.decode().lower(): v.decode("utf-8", "replace")
                        for k, v in scope.get("headers", [])}
@@ -172,7 +197,7 @@ class StealthWallMiddleware:
                 "method": scope.get("method", "GET").upper(),
                 "path": scope.get("path", "/"),
                 "status": status,
-                "payload": "",
+                "payload": payload or "",
                 "headers": headers,
                 "user_agent": headers.get("user-agent", ""),
                 "is_auth_failure": bool(

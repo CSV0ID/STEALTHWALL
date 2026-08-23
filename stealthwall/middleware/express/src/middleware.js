@@ -54,15 +54,20 @@ function stealthwall(options = {}) {
       let win = windows.get(ip);
       if (!win) { win = []; windows.set(ip, win); }
 
-      // NOTE: request body sampling requires a body reader middleware;
-      // without one the payload stays '' and byte-entropy features read 0,
-      // identically on both sides of the parity test corpus.
+      let payloadStr = '';
+      if (req.body) {
+        payloadStr = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
+      } else if (req.rawBody) {
+        payloadStr = String(req.rawBody);
+      }
+      if (payloadStr.length > 512) payloadStr = payloadStr.slice(0, 512);
+
       const event = {
         ts: startTs,
         method: (req.method || 'GET').toUpperCase(),
         path: req.originalUrl || req.url || '/',
         status: res.statusCode,
-        payload: '',
+        payload: payloadStr,
         headers: (() => {
           const h = {};
           for (const [k, v] of Object.entries(req.headers || {})) {
