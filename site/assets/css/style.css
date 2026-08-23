@@ -50,11 +50,25 @@ body {
 .mono { font-family: 'JetBrains Mono', monospace; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; width: 100%; }
 
-h1, h2, h3, h4 {
-  color: #000000 !important;
+h1, .hero h1 {
+  color: #030712 !important;
+  -webkit-text-stroke: 1.4px #ffffff;
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.75), 0 0 35px rgba(255, 255, 255, 0.35);
+  letter-spacing: -0.02em;
+}
+
+h2, .section-title h2 {
+  color: #030712 !important;
   -webkit-text-stroke: 1.3px #ffffff;
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.75), 0 0 30px rgba(255, 255, 255, 0.35);
   letter-spacing: -0.02em;
+}
+
+h3, h4, h5, h6 {
+  color: #ffffff;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+  letter-spacing: -0.01em;
 }
 
 .gradient-text, .gradient-headline {
@@ -467,11 +481,11 @@ nav {
 
 .feature-card h3 {
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: 700;
   margin-bottom: 0.75rem;
-  color: #000000 !important;
-  -webkit-text-stroke: 1px #ffffff;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  color: #ffffff;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
 }
 
 .feature-card p {
