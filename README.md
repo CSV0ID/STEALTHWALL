@@ -1,8 +1,11 @@
 # STEALTHWALL
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![PyPI version](https://img.shields.io/pypi/v/stealthwall.svg?color=blue)](https://pypi.org/project/stealthwall/)
+[![npm version](https://img.shields.io/npm/v/stealthwall.svg?color=green)](https://www.npmjs.com/package/stealthwall)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Node.js 18+](https://img.shields.io/badge/node-18+-green.svg)](https://nodejs.org/)
+[![Tests](https://img.shields.io/badge/tests-37%20passed-brightgreen.svg)](https://github.com/CSV0ID/STEALTHWALL)
 
 Self-hosted machine-learning intrusion prevention middleware and firewall. Evaluates sliding-window traffic behavior across 14 normalized statistical features in sub-millisecond time to detect and mitigate automated cyberattacks (SQL injection, directory scans, brute force, exploit probes) before requests reach backend application logic.
 
