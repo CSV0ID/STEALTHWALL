@@ -219,7 +219,7 @@ nav {
 
 /* Hero Section — High-Impact Two-Column Cyber Architecture */
 .hero {
-  padding: 5.5rem 0 4.5rem;
+  padding: 5rem 0 4rem;
   position: relative;
 }
 
@@ -235,6 +235,8 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  position: relative;
+  z-index: 10;
 }
 
 .hero h1 {
@@ -243,21 +245,22 @@ nav {
   letter-spacing: -0.02em;
   line-height: 1.2;
   margin: 1.25rem 0 1rem;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .gradient-headline {
-  color: #38bdf8;
-  background: linear-gradient(135deg, #00f2fe 0%, #38bdf8 50%, #818cf8 100%);
+  color: #38bdf8 !important;
+  background: linear-gradient(135deg, #00f2fe 0%, #38bdf8 50%, #60a5fa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
   font-weight: 800;
+  font-size: 3.25rem;
 }
 
 .hero p {
   font-size: 1.125rem;
-  color: #94a3b8;
+  color: #cbd5e1 !important;
   line-height: 1.7;
   margin-bottom: 2rem;
   max-width: 580px;
@@ -268,6 +271,8 @@ nav {
   gap: 1rem;
   flex-wrap: wrap;
   margin-bottom: 2rem;
+  position: relative;
+  z-index: 12;
 }
 
 /* 3D Holographic Display Card */
@@ -279,6 +284,7 @@ nav {
   flex-direction: column;
   position: relative;
   margin: 0 auto;
+  z-index: 5;
 }
 
 .hero-3d-header {
@@ -290,7 +296,7 @@ nav {
   font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.05em;
-  background: rgba(6, 9, 19, 0.6);
+  background: rgba(6, 9, 19, 0.8);
 }
 
 .hero-3d-canvas-wrap {
@@ -298,15 +304,15 @@ nav {
   position: relative;
   width: 100%;
   height: 320px;
+  min-height: 320px;
   overflow: hidden;
+  background: rgba(4, 7, 15, 0.6);
 }
 
 #three-hero-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: relative !important;
+  width: 100% !important;
+  height: 100% !important;
   min-height: 320px;
   display: block;
 }
@@ -315,6 +321,8 @@ nav {
   width: 100% !important;
   height: 100% !important;
   display: block;
+  position: relative !important;
+  border-radius: 0.5rem;
 }
 
 .hero-3d-footer {
@@ -325,7 +333,7 @@ nav {
   align-items: center;
   font-size: 0.75rem;
   color: var(--text-dim);
-  background: rgba(6, 9, 19, 0.6);
+  background: rgba(6, 9, 19, 0.8);
 }
 
 @media (max-width: 960px) {
