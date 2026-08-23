@@ -15,7 +15,7 @@
     const container = document.getElementById('three-hero-bg');
     if (!container || typeof THREE === 'undefined') return;
 
-    // 1. Scene & Camera Setup
+    // 1. Scene & Camera Setup (Placed slightly further back for depth and text legibility)
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(
       45,
@@ -23,7 +23,7 @@
       0.1,
       1000
     );
-    camera.position.z = 40;
+    camera.position.z = 46;
 
     // 2. WebGL Renderer
     renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'high-performance' });
@@ -31,65 +31,65 @@
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    // 3. Central Holographic Core (Icosahedron - Represents LightGBM ML Core)
-    const coreGeo = new THREE.IcosahedronGeometry(7, 1);
+    // 3. Central Holographic Core (Icosahedron - Distinct Cyber Emerald & Jade)
+    const coreGeo = new THREE.IcosahedronGeometry(7.5, 1);
     const coreMat = new THREE.MeshBasicMaterial({
-      color: 0x3b82f6,
+      color: 0x10b981, // Distinct Cyber Emerald
       wireframe: true,
       transparent: true,
-      opacity: 0.75,
+      opacity: 0.45,
     });
     coreIcosahedron = new THREE.Mesh(coreGeo, coreMat);
     scene.add(coreIcosahedron);
 
-    // Inner Glowing Core Node
-    const innerGeo = new THREE.IcosahedronGeometry(4, 2);
+    // Inner Glowing Core Node (Deep Jade / Teal Core)
+    const innerGeo = new THREE.IcosahedronGeometry(4.2, 2);
     const innerMat = new THREE.MeshBasicMaterial({
-      color: 0x06b6d4,
+      color: 0x059669, // Deep Jade
       wireframe: true,
       transparent: true,
-      opacity: 0.9,
+      opacity: 0.55,
     });
     const innerCore = new THREE.Mesh(innerGeo, innerMat);
     coreIcosahedron.add(innerCore);
 
-    // 4. Outer Defense Lattice Sphere (Represents Kernel iptables Gate)
-    const outerGeo = new THREE.SphereGeometry(12, 16, 16);
+    // 4. Outer Defense Lattice Sphere (Represents Kernel iptables Gate - Deep Violet/Indigo)
+    const outerGeo = new THREE.SphereGeometry(13, 16, 16);
     const outerMat = new THREE.MeshBasicMaterial({
-      color: 0x1d4ed8,
+      color: 0x4338ca, // Deep Indigo / Amethyst
       wireframe: true,
       transparent: true,
-      opacity: 0.25,
+      opacity: 0.22,
     });
     outerWireSphere = new THREE.Mesh(outerGeo, outerMat);
     scene.add(outerWireSphere);
 
-    // 5. Equatorial Rotating Threat Intel Ring
-    const ringGeo = new THREE.TorusGeometry(15, 0.15, 8, 64);
+    // 5. Equatorial Rotating Threat Intel Ring (Soft Amber / Gold Orbit)
+    const ringGeo = new THREE.TorusGeometry(16, 0.12, 8, 64);
     const ringMat = new THREE.MeshBasicMaterial({
-      color: 0x8b5cf6,
+      color: 0xf59e0b, // Amber Gold
       transparent: true,
-      opacity: 0.6,
+      opacity: 0.4,
     });
     ringMesh = new THREE.Mesh(ringGeo, ringMat);
     ringMesh.rotation.x = Math.PI / 2.3;
     scene.add(ringMesh);
 
-    // 6. Sliding-Window 14-Feature Node Cloud (Particles)
-    const particleCount = 280;
+    // 6. Sliding-Window 14-Feature Node Cloud (Dual Emerald & Violet Particles)
+    const particleCount = 260;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
 
-    const baseColor = new THREE.Color(0x38bdf8);
-    const altColor = new THREE.Color(0x818cf8);
+    const emeraldColor = new THREE.Color(0x34d399); // Soft Mint/Emerald
+    const violetColor = new THREE.Color(0xa78bfa);  // Soft Violet
 
     for (let i = 0; i < particleCount; i++) {
       const u = Math.random();
       const v = Math.random();
       const theta = u * 2.0 * Math.PI;
       const phi = Math.acos(2.0 * v - 1.0);
-      const r = 10 + Math.random() * 8;
+      const r = 11 + Math.random() * 8.5;
 
       const x = r * Math.sin(phi) * Math.cos(theta);
       const y = r * Math.sin(phi) * Math.sin(theta);
@@ -99,7 +99,7 @@
       positions[i * 3 + 1] = y;
       positions[i * 3 + 2] = z;
 
-      const c = (i % 2 === 0) ? baseColor : altColor;
+      const c = (i % 2 === 0) ? emeraldColor : violetColor;
       colors[i * 3] = c.r;
       colors[i * 3 + 1] = c.g;
       colors[i * 3 + 2] = c.b;
@@ -109,10 +109,10 @@
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const particleMat = new THREE.PointsMaterial({
-      size: 0.6,
+      size: 0.45,
       vertexColors: true,
       transparent: true,
-      opacity: 0.8,
+      opacity: 0.55,
     });
 
     particleShield = new THREE.Points(geometry, particleMat);

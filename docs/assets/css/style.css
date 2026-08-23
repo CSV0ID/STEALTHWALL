@@ -205,12 +205,12 @@ nav {
   height: 100%;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.75;
+  opacity: 0.55;
 }
 
 .hero .container {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero h1 {
@@ -219,13 +219,22 @@ nav {
   letter-spacing: -0.03em;
   line-height: 1.15;
   margin: 1.5rem 0 1.25rem;
+  text-shadow: 0 4px 20px rgba(6, 9, 19, 0.95), 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .hero p {
   font-size: 1.2rem;
-  color: var(--text-muted);
+  color: #cbd5e1;
   max-width: 780px;
   margin: 0 auto 2.5rem;
+  text-shadow: 0 2px 14px rgba(6, 9, 19, 0.95);
+}
+
+.hero .badge {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(6, 9, 19, 0.85);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
 .hero-actions {
@@ -234,6 +243,8 @@ nav {
   gap: 1rem;
   flex-wrap: wrap;
   margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 3;
 }
 
 .btn-primary {
