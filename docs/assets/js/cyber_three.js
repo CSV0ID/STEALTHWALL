@@ -15,61 +15,58 @@
     const container = document.getElementById('three-hero-bg');
     if (!container || typeof THREE === 'undefined') return;
 
-    // 1. Scene & Camera Setup (Placed slightly further back for depth and text legibility)
+    // 1. Scene & Camera Setup for Dedicated Holographic Card
     scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(
-      45,
-      container.clientWidth / container.clientHeight,
-      0.1,
-      1000
-    );
-    camera.position.z = 46;
+    const w = container.clientWidth || 400;
+    const h = container.clientHeight || 340;
+    camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 1000);
+    camera.position.z = 35;
 
     // 2. WebGL Renderer
     renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'high-performance' });
-    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setSize(w, h);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    // 3. Central Holographic Core (Icosahedron - Distinct Cyber Emerald & Jade)
-    const coreGeo = new THREE.IcosahedronGeometry(7.5, 1);
+    // 3. Central Holographic Core (Icosahedron - High-Vibrancy Cyan & Emerald)
+    const coreGeo = new THREE.IcosahedronGeometry(6.5, 1);
     const coreMat = new THREE.MeshBasicMaterial({
-      color: 0x10b981, // Distinct Cyber Emerald
+      color: 0x06b6d4, // Neon Cyan
       wireframe: true,
       transparent: true,
-      opacity: 0.45,
+      opacity: 0.85,
     });
     coreIcosahedron = new THREE.Mesh(coreGeo, coreMat);
     scene.add(coreIcosahedron);
 
-    // Inner Glowing Core Node (Deep Jade / Teal Core)
-    const innerGeo = new THREE.IcosahedronGeometry(4.2, 2);
+    // Inner Glowing Core Node (Electric Emerald Core)
+    const innerGeo = new THREE.IcosahedronGeometry(3.6, 2);
     const innerMat = new THREE.MeshBasicMaterial({
-      color: 0x059669, // Deep Jade
+      color: 0x10b981, // Electric Emerald
       wireframe: true,
       transparent: true,
-      opacity: 0.55,
+      opacity: 0.95,
     });
     const innerCore = new THREE.Mesh(innerGeo, innerMat);
     coreIcosahedron.add(innerCore);
 
-    // 4. Outer Defense Lattice Sphere (Represents Kernel iptables Gate - Deep Violet/Indigo)
-    const outerGeo = new THREE.SphereGeometry(13, 16, 16);
+    // 4. Outer Defense Lattice Sphere (Represents Kernel iptables Gate - Cyber Blue)
+    const outerGeo = new THREE.SphereGeometry(10.5, 16, 16);
     const outerMat = new THREE.MeshBasicMaterial({
-      color: 0x4338ca, // Deep Indigo / Amethyst
+      color: 0x3b82f6, // Electric Blue
       wireframe: true,
       transparent: true,
-      opacity: 0.22,
+      opacity: 0.35,
     });
     outerWireSphere = new THREE.Mesh(outerGeo, outerMat);
     scene.add(outerWireSphere);
 
-    // 5. Equatorial Rotating Threat Intel Ring (Soft Amber / Gold Orbit)
-    const ringGeo = new THREE.TorusGeometry(16, 0.12, 8, 64);
+    // 5. Equatorial Rotating Threat Intel Ring (Neon Purple Orbit)
+    const ringGeo = new THREE.TorusGeometry(13.5, 0.15, 8, 64);
     const ringMat = new THREE.MeshBasicMaterial({
-      color: 0xf59e0b, // Amber Gold
+      color: 0xa855f7, // Neon Purple
       transparent: true,
-      opacity: 0.4,
+      opacity: 0.75,
     });
     ringMesh = new THREE.Mesh(ringGeo, ringMat);
     ringMesh.rotation.x = Math.PI / 2.3;
@@ -129,9 +126,11 @@
   function onWindowResize() {
     const container = document.getElementById('three-hero-bg');
     if (!container || !renderer || !camera) return;
-    camera.aspect = container.clientWidth / container.clientHeight;
+    const w = container.clientWidth || 400;
+    const h = container.clientHeight || 340;
+    camera.aspect = w / h;
     camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setSize(w, h);
   }
 
   function onMouseMove(event) {

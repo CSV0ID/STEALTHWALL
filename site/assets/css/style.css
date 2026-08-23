@@ -189,12 +189,112 @@ nav {
   transform: translateY(-1px);
 }
 
-/* Hero Section & 3D Three.js Canvas */
-.hero {
-  padding: 5.5rem 0 4.5rem;
-  text-align: center;
+/* Glowing Cyber Borders & HUD Card Components */
+.glow-card {
+  background: rgba(12, 18, 34, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  border-radius: 1.25rem;
+  box-shadow: 0 0 35px rgba(59, 130, 246, 0.15), inset 0 0 20px rgba(59, 130, 246, 0.06);
   position: relative;
   overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glow-card:hover {
+  border-color: rgba(59, 130, 246, 0.7);
+  box-shadow: 0 0 50px rgba(59, 130, 246, 0.25), inset 0 0 25px rgba(59, 130, 246, 0.1);
+}
+
+.glow-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #3b82f6, #06b6d4, #8b5cf6, transparent);
+}
+
+/* Hero Section — High-Impact Two-Column Cyber Architecture */
+.hero {
+  padding: 5rem 0 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3rem;
+  align-items: center;
+  text-align: left;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero h1 {
+  font-size: 3.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 1.25rem 0 1rem;
+  color: #fff;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #38bdf8 0%, #60a5fa 45%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.hero p {
+  font-size: 1.125rem;
+  color: #94a3b8;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+/* 3D Holographic Display Card */
+.hero-3d-card {
+  width: 100%;
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-3d-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: rgba(6, 9, 19, 0.4);
+}
+
+.hero-3d-canvas-wrap {
+  flex: 1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 340px;
 }
 
 #three-hero-bg {
@@ -203,48 +303,36 @@ nav {
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.55;
 }
 
-.hero .container {
-  position: relative;
-  z-index: 2;
-}
-
-.hero h1 {
-  font-size: 3.5rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  margin: 1.5rem 0 1.25rem;
-  text-shadow: 0 4px 20px rgba(6, 9, 19, 0.95), 0 1px 3px rgba(0, 0, 0, 0.9);
-}
-
-.hero p {
-  font-size: 1.2rem;
-  color: #cbd5e1;
-  max-width: 780px;
-  margin: 0 auto 2.5rem;
-  text-shadow: 0 2px 14px rgba(6, 9, 19, 0.95);
-}
-
-.hero .badge {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  background: rgba(6, 9, 19, 0.85);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-}
-
-.hero-actions {
+.hero-3d-footer {
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid rgba(59, 130, 246, 0.2);
   display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 2.5rem;
-  position: relative;
-  z-index: 3;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  background: rgba(6, 9, 19, 0.4);
+}
+
+@media (max-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-left {
+    align-items: center;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
+  .hero-3d-card {
+    height: 400px;
+  }
 }
 
 .btn-primary {

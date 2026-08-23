@@ -38,30 +38,57 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <div id="three-hero-bg"></div>
     <div class="container">
-      <div class="badge" style="margin-bottom: 1.5rem;">
-        <div class="badge-dot"></div>
-        <span>Officially Live on PyPI & npm — Version 5.0.0</span>
-      </div>
+      <div class="hero-grid">
+        
+        <!-- Left: High-Contrast Luminous Brand Pitch -->
+        <div class="hero-left">
+          <div class="badge" style="margin-bottom: 1.25rem;">
+            <div class="badge-dot"></div>
+            <span>Officially Live on PyPI & npm — Version 5.0.0</span>
+          </div>
 
-      <h1>Sub-Millisecond ML Intrusion Prevention<br><span class="gradient-text">Before Exploits Touch Your Backend</span></h1>
-      
-      <p>Self-hosted intelligent Web Application Firewall and IPS. Evaluates sliding-window behavioral entropy across 14 statistical features in sub-millisecond time with LightGBM ONNX inference and automated graduated defense.</p>
+          <h1>Sub-Millisecond ML Intrusion Prevention<br><span class="gradient-text">Before Exploits Touch Your Backend</span></h1>
+          
+          <p>Self-hosted intelligent Web Application Firewall and IPS. Evaluates sliding-window behavioral entropy across 14 statistical features in sub-millisecond time with LightGBM ONNX inference and automated graduated defense.</p>
 
-      <div class="hero-actions">
-        <a href="integrations.html" class="btn-primary">Get Started in 1 Minute →</a>
-        <a href="demo.html" class="btn-secondary">Test Attack Sandbox ⚡</a>
-      </div>
+          <div class="hero-actions">
+            <a href="integrations.html" class="btn-primary">Get Started in 1 Minute →</a>
+            <a href="demo.html" class="btn-secondary">Test Attack Sandbox ⚡</a>
+          </div>
 
-      <div class="install-bar mono">
-        <span style="color: #64748b;"># Python:</span>
-        <span class="install-cmd">pip install stealthwall</span>
-        <button class="copy-btn" onclick="copyInstall('pip install stealthwall')">Copy</button>
-        <span style="color: #64748b;">|</span>
-        <span style="color: #64748b;"># Node.js:</span>
-        <span class="install-cmd">npm i stealthwall</span>
-        <button class="copy-btn" onclick="copyInstall('npm i stealthwall')">Copy</button>
+          <div class="install-bar mono">
+            <span style="color: #64748b;"># Python:</span>
+            <span class="install-cmd">pip install stealthwall</span>
+            <button class="copy-btn" onclick="copyInstall('pip install stealthwall')">Copy</button>
+            <span style="color: #64748b;">|</span>
+            <span style="color: #64748b;"># Node.js:</span>
+            <span class="install-cmd">npm i stealthwall</span>
+            <button class="copy-btn" onclick="copyInstall('npm i stealthwall')">Copy</button>
+          </div>
+        </div>
+
+        <!-- Right: Glowing Cyber 3D Holographic HUD Card -->
+        <div class="hero-right">
+          <div class="glow-card hero-3d-card">
+            <div class="hero-3d-header">
+              <span style="color: #60a5fa; display: flex; align-items: center; gap: 0.5rem;">
+                <span class="badge-dot"></span> LIVE 3D DEFENSE CORE
+              </span>
+              <span style="color: #10b981; font-family: 'JetBrains Mono', monospace;">SHIELD ACTIVE</span>
+            </div>
+            
+            <div class="hero-3d-canvas-wrap">
+              <div id="three-hero-bg"></div>
+            </div>
+
+            <div class="hero-3d-footer">
+              <span>14 Nodes Tracking</span>
+              <span style="color: #38bdf8; font-family: 'JetBrains Mono', monospace;">ONNX Latency: &lt;0.8ms</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
