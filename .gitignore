@@ -12,3 +12,8 @@ npm-debug.log*
 # OS artifacts
 .DS_Store
 Thumbs.db
+
+stealthwall.egg-info/
+dist/
+build/
+*.egg-info/
