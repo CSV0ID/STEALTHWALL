@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="docs/assets/banner.svg" alt="STEALTHWALL by CS VOID LABS" width="100%">
+  <img src="docs/assets/banner.svg" alt="STEALTHWALL" width="100%">
 </p>
 
 <p align="center">
   <strong>Sub-millisecond machine-learning intrusion prevention system and self-healing Web Application Firewall.</strong><br>
-  <em>Engineered by <strong>CS VOID LABS</strong> to mitigate zero-day web attacks, polyglots, and automated scrapers before requests hit backend logic.</em>
+  <em>Engineered by <strong>Chinmay Shinde</strong> to mitigate zero-day web attacks, polyglots, and automated scrapers before requests hit backend logic.</em>
 </p>
 
 <p align="center">
@@ -42,7 +42,7 @@ Traditional Web Application Firewalls (ModSecurity, Cloudflare WAF, AWS WAF) for
 2. **Blind to 0-Day Evasion**: Signature engines fail against novel polyglots, whitespace variations, and polymorphic payload encodings.
 3. **Cloud SaaS Telemetry Leakage**: Routing customer request bodies and headers through third-party cloud infrastructure introduces privacy compliance (GDPR/HIPAA) risks.
 
-**STEALTHWALL eliminates this compromise.** Built by **CS VOID LABS**, it executes entirely in-process inside your application runtime or edge proxy, extracting **14 normalized behavioral entropy metrics** and scoring requests via an optimized **LightGBM decision forest compiled to ONNX** in **under 0.8 milliseconds**.
+**STEALTHWALL eliminates this compromise.** Engineered by **Chinmay Shinde**, it executes entirely in-process inside your application runtime or edge proxy, extracting **14 normalized behavioral entropy metrics** and scoring requests via an optimized **LightGBM decision forest compiled to ONNX** in **under 0.8 milliseconds**.
 
 ---
 
@@ -89,7 +89,7 @@ Traditional Web Application Firewalls (ModSecurity, Cloudflare WAF, AWS WAF) for
 
 ## 📊 Head-to-Head Comparison Matrix
 
-| Feature | STEALTHWALL (CS VOID LABS) | ModSecurity / Coraza | Cloudflare WAF | AWS WAF |
+| Feature | STEALTHWALL | ModSecurity / Coraza | Cloudflare WAF | AWS WAF |
 | :--- | :---: | :---: | :---: | :---: |
 | **Inference Overhead** | **`<0.8 ms`** | `15 – 35 ms` | `20 – 60 ms` (Network) | `10 – 30 ms` |
 | **Detection Methodology** | **Behavioral ML + 0-Day Heuristics** | Static Regex Signatures | Proprietary Cloud Rules | Managed Rulesets |
@@ -225,11 +225,11 @@ We welcome contributions from security researchers, ML practitioners, and backen
 
 ---
 
-## 🏢 Organization & Author
+## 👤 Author & Creator
 
 <p align="left">
-  <strong>CS VOID LABS</strong> • <em>Offensive Security & Machine Learning Division</em><br>
-  Founder & Lead Architect: <strong>Chinmay Shinde</strong> (<a href="https://github.com/CSV0ID">@CSV0ID</a>)
+  <strong>Chinmay Shinde</strong> (<a href="https://github.com/CSV0ID">@CSV0ID</a>)<br>
+  <em>Software & Security Systems Engineer</em>
 </p>
 
 <p align="left">

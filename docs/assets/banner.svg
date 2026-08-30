@@ -96,18 +96,18 @@
     <line x1="1000" y1="0" x2="1000" y2="440"/>
   </g>
 
-  <!-- Top CS VOID LABS Brand Header Pill -->
+  <!-- Top Brand Header Pill -->
   <g transform="translate(600, 52)">
     <rect x="-240" y="-18" width="480" height="36" rx="18" fill="rgba(8, 12, 28, 0.85)" stroke="url(#voidPillGrad)" stroke-width="1.2"/>
-    <!-- Glowing Void Core Dot -->
+    <!-- Glowing Core Dot -->
     <circle cx="-212" cy="0" r="5" fill="#e11d48" filter="url(#hyperGlow)"/>
     <circle cx="-212" cy="0" r="2.5" fill="#ffffff"/>
-    <text x="0" y="4.5" text-anchor="middle" class="brand-company">CS VOID LABS • CYBERSECURITY DIVISION</text>
+    <text x="0" y="4.5" text-anchor="middle" class="brand-company">OPEN SOURCE CYBERSECURITY • v5.0.0</text>
     <circle cx="212" cy="0" r="5" fill="#38bdf8" filter="url(#hyperGlow)"/>
     <circle cx="212" cy="0" r="2.5" fill="#ffffff"/>
   </g>
 
-  <!-- 3D CS VOID / STEALTH SHIELD LOGO (Center Left) -->
+  <!-- 3D STEALTH SHIELD LOGO (Center Left) -->
   <g transform="translate(160, 220)">
     <!-- Ambient Halo Behind Shield -->
     <circle cx="0" cy="0" r="85" fill="#2563eb" opacity="0.25" filter="url(#hyperGlow)"/>
@@ -124,7 +124,7 @@
     <!-- Central Chrome Ridge -->
     <line x1="0" y1="-64" x2="0" y2="64" stroke="#ffffff" stroke-width="2.5" filter="url(#hyperGlow)"/>
 
-    <!-- Stylized 'V' (VOID) Geometric Core -->
+    <!-- Stylized 'S' Geometric Shield Core -->
     <path d="M-26 -20 L0 32 L26 -20" fill="none" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#hyperGlow)"/>
     <!-- Pulsing Singularity Center -->
     <circle cx="0" cy="0" r="6" fill="#38bdf8" filter="url(#hyperGlow)"/>
@@ -133,7 +133,7 @@
 
   <!-- Brand Typography & Subtitles -->
   <text x="280" y="185" class="brand-title">STEALTHWALL</text>
-  <text x="282" y="215" class="brand-author">ENGINEERED BY CS VOID LABS</text>
+  <text x="282" y="215" class="brand-author">ENGINEERED BY CHINMAY SHINDE</text>
   <text x="282" y="252" class="brand-sub">Sub-Millisecond ML Intrusion Prevention &amp; Self-Healing WAF</text>
 
   <!-- Bottom Capability Feature Pills -->
