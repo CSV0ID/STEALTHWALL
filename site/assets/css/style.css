@@ -32,7 +32,7 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: #060911;
+  background-color: #030712;
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
@@ -41,12 +41,12 @@ body {
   display: flex;
   flex-direction: column;
   background-image: 
-    radial-gradient(circle at 12% 18%, rgba(225, 29, 72, 0.22) 0%, transparent 45%),
-    radial-gradient(circle at 88% 14%, rgba(37, 99, 235, 0.28) 0%, transparent 50%),
-    radial-gradient(circle at 50% 48%, rgba(147, 51, 234, 0.2) 0%, transparent 55%),
-    radial-gradient(circle at 18% 78%, rgba(6, 182, 212, 0.22) 0%, transparent 45%),
-    radial-gradient(circle at 82% 82%, rgba(225, 29, 72, 0.18) 0%, transparent 50%),
-    radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.25) 0%, transparent 55%);
+    radial-gradient(circle at 10% 15%, rgba(225, 29, 72, 0.22) 0%, transparent 45%),
+    radial-gradient(circle at 90% 12%, rgba(37, 99, 235, 0.32) 0%, transparent 50%),
+    radial-gradient(circle at 50% 40%, rgba(6, 182, 212, 0.24) 0%, transparent 55%),
+    radial-gradient(circle at 15% 75%, rgba(16, 185, 129, 0.18) 0%, transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(225, 29, 72, 0.20) 0%, transparent 50%),
+    radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.28) 0%, transparent 55%);
   background-attachment: fixed;
 }
 
@@ -59,12 +59,12 @@ body::before {
   width: 200%;
   height: 200%;
   background: 
-    radial-gradient(ellipse at 25% 25%, rgba(225, 29, 72, 0.2), transparent 40%),
-    radial-gradient(ellipse at 75% 20%, rgba(37, 99, 235, 0.26), transparent 45%),
-    radial-gradient(ellipse at 35% 75%, rgba(6, 182, 212, 0.18), transparent 40%),
-    radial-gradient(ellipse at 80% 70%, rgba(168, 85, 247, 0.22), transparent 45%);
+    radial-gradient(ellipse at 20% 20%, rgba(225, 29, 72, 0.24), transparent 42%),
+    radial-gradient(ellipse at 80% 18%, rgba(37, 99, 235, 0.32), transparent 48%),
+    radial-gradient(ellipse at 30% 75%, rgba(6, 182, 212, 0.26), transparent 42%),
+    radial-gradient(ellipse at 78% 72%, rgba(16, 185, 129, 0.22), transparent 46%);
   filter: blur(85px);
-  opacity: 0.9;
+  opacity: 0.95;
   pointer-events: none;
   z-index: 0;
   animation: liquidGlassShift 22s ease-in-out infinite alternate;
