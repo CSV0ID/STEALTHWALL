@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use STEALTHWALL, please cite it as below."
+authors:
+  - family-names: "Shinde"
+    given-names: "Chinmay"
+    alias: "CSV0ID"
+title: "STEALTHWALL: Sub-Millisecond Machine-Learning Web Application Firewall"
+version: 5.0.0
+date-released: 2026-08-25
+url: "https://github.com/CSV0ID/STEALTHWALL"

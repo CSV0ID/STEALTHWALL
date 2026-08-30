@@ -621,3 +621,73 @@
 {"action": "long_cooldown_block", "ip": "203.0.113.88", "kind": "response", "score": 1.0, "ts": 1787508327.3232102, "ttl": 259200}
 {"action": "long_cooldown_block", "ip": "185.220.101.5", "kind": "response", "score": 1.0, "ts": 1787508327.8172758, "ttl": 259200}
 {"action": "provisional_block", "ip": "testclient", "kind": "response", "note": "shared-like capped before escalation", "score": 1.0, "ts": 1787508328.2510133, "ttl": 1200}
+{"baseline_after": -0.000139, "baseline_before": 0.0, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4302833}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.436368}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4365418}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4366832}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4368174}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4369507}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4371018}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4372628}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4374192}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4375565}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4377978}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4379346}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.438067}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.438201}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4383373}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4384735}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.43863}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.438764}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4388978}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.439029}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4391637}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4393}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.439432}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.439568}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4397018}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4398348}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4399686}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4401052}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.440262}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.440442}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.440616}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4407682}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4409165}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.441012}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4411056}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4411998}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4412954}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4413927}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.441488}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4416645}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4417772}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4418826}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4420044}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4421012}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.442201}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4422967}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4423919}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4424887}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.442587}
+{"baseline_after": -0.000139, "baseline_before": -0.000139, "ip": "198.51.100.42", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4426854}
+{"baseline_after": -0.0, "baseline_before": 0.0, "ip": "198.51.100.99", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4440427}
+{"baseline_after": -0.0, "baseline_before": -0.0, "ip": "198.51.100.99", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4441617}
+{"baseline_after": -0.0, "baseline_before": -0.0, "ip": "198.51.100.99", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4442608}
+{"baseline_after": -0.0, "baseline_before": -0.0, "ip": "198.51.100.99", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4443562}
+{"baseline_after": -0.0, "baseline_before": -0.0, "ip": "198.51.100.99", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4444504}
+{"baseline_after": -0.0, "baseline_before": -0.0, "ip": "198.51.100.99", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4445505}
+{"baseline_after": -0.0, "baseline_before": -0.0, "ip": "198.51.100.99", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4446425}
+{"baseline_after": -0.0, "baseline_before": -0.0, "ip": "198.51.100.99", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4447334}
+{"baseline_after": -0.0, "baseline_before": -0.0, "ip": "198.51.100.99", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4448519}
+{"baseline_after": -0.0, "baseline_before": -0.0, "ip": "198.51.100.99", "kind": "adaptive_adjustment", "outcome": "false_positive", "ts": 1788085463.4449499}
+{"action": "rate_limit", "ip": "10.0.0.2", "kind": "response", "score": 0.6, "ts": 1788085463.8031762}
+{"action": "captcha", "ip": "10.0.0.3", "kind": "response", "score": 0.8, "ts": 1788085463.8036134}
+{"action": "temp_block", "ip": "10.0.0.4", "kind": "response", "score": 0.95, "ts": 1788085463.80411, "ttl": 3600}
+{"action": "provisional_block", "ip": "198.51.100.1", "kind": "response", "score": 0.65, "ts": 1788085463.8075716, "ttl": 1200}
+{"actor": "admin", "after": ["192.168.1.100"], "before": [], "ip": "192.168.1.100", "kind": "whitelist_edit", "op": "add", "ts": 1788085463.8116374}
+{"actor": "admin", "after": [], "before": ["192.168.1.100"], "ip": "192.168.1.100", "kind": "whitelist_edit", "op": "remove", "ts": 1788085463.8118074}
+{"action": "provisional_block", "ip": "198.51.100.99", "kind": "response", "note": "shared-like capped before escalation", "score": 1.0, "ts": 1788085464.0302327, "ttl": 1200}
+{"action": "long_cooldown_block", "ip": "203.0.113.88", "kind": "response", "score": 1.0, "ts": 1788085464.1647265, "ttl": 259200}
+{"action": "long_cooldown_block", "ip": "185.220.101.5", "kind": "response", "score": 1.0, "ts": 1788085464.593532, "ttl": 259200}
+{"action": "provisional_block", "ip": "testclient", "kind": "response", "note": "shared-like capped before escalation", "score": 1.0, "ts": 1788085464.8533552, "ttl": 1200}
