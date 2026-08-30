@@ -20,7 +20,7 @@
   <a href="https://www.npmjs.com/package/stealthwall"><img src="https://img.shields.io/npm/v/stealthwall.svg?style=flat-square&color=34d399" alt="npm Version"></a>
   <a href="https://github.com/CSV0ID/STEALTHWALL/actions"><img src="https://img.shields.io/badge/tests-40%20passed%20(100%25)-brightgreen?style=flat-square" alt="Tests"></a>
   <a href="https://github.com/CSV0ID/STEALTHWALL/releases/tag/v5.0.0"><img src="https://img.shields.io/badge/release-v5.0.0-blue?style=flat-square" alt="Release"></a>
-  <a href="https://github.com/CSV0ID/STEALTHWALL/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-yellow?style=flat-square" alt="License: MIT"></a>
+  <a href="https://github.com/CSV0ID/STEALTHWALL/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue?style=flat-square" alt="License: Apache 2.0"></a>
   <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.9+-blue?style=flat-square&logo=python&logoColor=white" alt="Python 3.9+"></a>
   <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/node-18+-green?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node.js 18+"></a>
   <a href="https://stealthwall.chinmayshinde.tech/benchmarks.html"><img src="https://img.shields.io/badge/latency-%3C0.8ms-purple?style=flat-square" alt="Sub-Millisecond Latency"></a>
@@ -239,4 +239,4 @@ We welcome contributions from security researchers, ML practitioners, and backen
 
 ## ⚖️ License
 
-STEALTHWALL is open-source software licensed under the [MIT License](LICENSE).
+STEALTHWALL is open-source software licensed under the [Apache License 2.0](LICENSE).

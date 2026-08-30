@@ -4,7 +4,7 @@
   "description": "ML-driven intrusion prevention middleware for Express - evaluates sliding-window behavioral threat patterns in sub-millisecond time with graduated response.",
   "main": "index.js",
   "author": "Chinmay Shinde <chinmayshinde247@gmail.com>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CSV0ID/STEALTHWALL.git"
