@@ -4,8 +4,8 @@
   "description": "Sub-millisecond machine-learning intrusion prevention system and self-healing Web Application Firewall by Chinmay Shinde.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#030712",
-  "theme_color": "#030712",
+  "background_color": "#0F0B0A",
+  "theme_color": "#0F0B0A",
   "icons": [
     {
       "src": "/assets/logo.svg",
