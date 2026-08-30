@@ -1,117 +1,166 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 380" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 440" width="100%" height="100%">
   <defs>
-    <!-- Background Gradients -->
-    <radialGradient id="bgGlow" cx="50%" cy="40%" r="60%">
-      <stop offset="0%" stop-color="#1e3a8a" stop-opacity="0.5"/>
-      <stop offset="40%" stop-color="#0e172a" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#020617" stop-opacity="1"/>
-    </radialGradient>
-    
-    <radialGradient id="cyanOrb" cx="20%" cy="20%" r="40%">
-      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.25"/>
-      <stop offset="100%" stop-color="#020617" stop-opacity="0"/>
+    <!-- Deep Chromatic Ambient Background -->
+    <radialGradient id="voidCore" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#1e1b4b" stop-opacity="0.85"/>
+      <stop offset="35%" stop-color="#0f172a" stop-opacity="0.95"/>
+      <stop offset="70%" stop-color="#050814" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#02040a" stop-opacity="1"/>
     </radialGradient>
 
-    <radialGradient id="purpleOrb" cx="80%" cy="70%" r="45%">
-      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.2"/>
-      <stop offset="100%" stop-color="#020617" stop-opacity="0"/>
+    <radialGradient id="rubyAura" cx="15%" cy="25%" r="45%">
+      <stop offset="0%" stop-color="#e11d48" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#02040a" stop-opacity="0"/>
     </radialGradient>
 
-    <!-- Shield & Accent Gradients -->
-    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38bdf8"/>
-      <stop offset="50%" stop-color="#3b82f6"/>
-      <stop offset="100%" stop-color="#1d4ed8"/>
-    </linearGradient>
+    <radialGradient id="cyanAura" cx="85%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#2563eb" stop-opacity="0.15"/>
+      <stop offset="80%" stop-color="#02040a" stop-opacity="0"/>
+    </radialGradient>
 
-    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <radialGradient id="purpleBottomAura" cx="50%" cy="95%" r="55%">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#02040a" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Metallic & Neon Gradients -->
+    <linearGradient id="chromeText" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="50%" stop-color="#e0f2fe"/>
+      <stop offset="35%" stop-color="#f1f5f9"/>
+      <stop offset="70%" stop-color="#cbd5e1"/>
       <stop offset="100%" stop-color="#38bdf8"/>
     </linearGradient>
 
-    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="rgba(255,255,255,0.3)"/>
-      <stop offset="50%" stop-color="rgba(56,189,248,0.6)"/>
-      <stop offset="100%" stop-color="rgba(139,92,246,0.3)"/>
+    <linearGradient id="voidPillGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="rgba(225, 29, 72, 0.4)"/>
+      <stop offset="50%" stop-color="rgba(99, 102, 241, 0.4)"/>
+      <stop offset="100%" stop-color="rgba(6, 182, 212, 0.4)"/>
     </linearGradient>
 
-    <!-- Filters -->
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="8" result="blur"/>
-      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    <linearGradient id="shieldFacet1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+
+    <linearGradient id="shieldFacet2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e11d48"/>
+      <stop offset="50%" stop-color="#9333ea"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <linearGradient id="glassBorder" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="rgba(255, 255, 255, 0.4)"/>
+      <stop offset="30%" stop-color="rgba(56, 189, 248, 0.7)"/>
+      <stop offset="70%" stop-color="rgba(225, 29, 72, 0.5)"/>
+      <stop offset="100%" stop-color="rgba(255, 255, 255, 0.3)"/>
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="hyperGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="12" result="blur1"/>
+      <feGaussianBlur stdDeviation="5" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
   </defs>
 
   <style>
-    .title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-size: 58px; letter-spacing: -1.5px; fill: url(#textGrad); }
-    .subtitle { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 500; font-size: 20px; letter-spacing: 0.2px; fill: #94a3b8; }
-    .badge-text { font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 12.5px; font-weight: 600; fill: #e0f2fe; }
-    .node-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #cbd5e1; }
+    .brand-company { font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; font-weight: 800; letter-spacing: 3.5px; fill: #f8fafc; text-transform: uppercase; }
+    .brand-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 950; font-size: 64px; letter-spacing: -2px; fill: url(#chromeText); }
+    .brand-author { font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 4px; fill: #38bdf8; text-transform: uppercase; }
+    .brand-sub { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 19px; font-weight: 500; letter-spacing: -0.2px; fill: #94a3b8; }
+    .pill-title { font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 12.5px; font-weight: 700; fill: #f1f5f9; letter-spacing: 0.5px; }
   </style>
 
-  <!-- Background Base -->
-  <rect width="1200" height="380" rx="16" fill="url(#bgGlow)"/>
-  <rect width="1200" height="380" rx="16" fill="url(#cyanOrb)"/>
-  <rect width="1200" height="380" rx="16" fill="url(#purpleOrb)"/>
-  <rect width="1198" height="378" x="1" y="1" rx="15" fill="none" stroke="url(#borderGrad)" stroke-width="1.5"/>
+  <!-- Canvas Background -->
+  <rect width="1200" height="440" rx="20" fill="url(#voidCore)"/>
+  <rect width="1200" height="440" rx="20" fill="url(#rubyAura)"/>
+  <rect width="1200" height="440" rx="20" fill="url(#cyanAura)"/>
+  <rect width="1200" height="440" rx="20" fill="url(#purpleBottomAura)"/>
+  <rect width="1198" height="438" x="1" y="1" rx="19" fill="none" stroke="url(#glassBorder)" stroke-width="1.8"/>
 
-  <!-- Subtle Cyber Grid Lines -->
-  <g opacity="0.12" stroke="#38bdf8" stroke-width="1">
-    <line x1="0" y1="95" x2="1200" y2="95"/>
-    <line x1="0" y1="190" x2="1200" y2="190"/>
-    <line x1="0" y1="285" x2="1200" y2="285"/>
-    <line x1="300" y1="0" x2="300" y2="380"/>
-    <line x1="600" y1="0" x2="600" y2="380"/>
-    <line x1="900" y1="0" x2="900" y2="380"/>
+  <!-- High-Tech Geometric Coordinate Grid -->
+  <g opacity="0.08" stroke="#38bdf8" stroke-width="1">
+    <line x1="0" y1="110" x2="1200" y2="110"/>
+    <line x1="0" y1="220" x2="1200" y2="220"/>
+    <line x1="0" y1="330" x2="1200" y2="330"/>
+    <line x1="200" y1="0" x2="200" y2="440"/>
+    <line x1="400" y1="0" x2="400" y2="440"/>
+    <line x1="600" y1="0" x2="600" y2="440"/>
+    <line x1="800" y1="0" x2="800" y2="440"/>
+    <line x1="1000" y1="0" x2="1000" y2="440"/>
   </g>
 
-  <!-- Top Release Pill -->
+  <!-- Top CS VOID LABS Brand Header Pill -->
   <g transform="translate(600, 52)">
-    <rect x="-160" y="-16" width="320" height="32" rx="16" fill="rgba(15, 23, 42, 0.75)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="1"/>
-    <circle cx="-136" cy="0" r="4.5" fill="#34d399" filter="url(#glow)"/>
-    <text x="0" y="4.5" text-anchor="middle" class="badge-text">v5.0.0 • PRODUCTION RELEASE</text>
+    <rect x="-240" y="-18" width="480" height="36" rx="18" fill="rgba(8, 12, 28, 0.85)" stroke="url(#voidPillGrad)" stroke-width="1.2"/>
+    <!-- Glowing Void Core Dot -->
+    <circle cx="-212" cy="0" r="5" fill="#e11d48" filter="url(#hyperGlow)"/>
+    <circle cx="-212" cy="0" r="2.5" fill="#ffffff"/>
+    <text x="0" y="4.5" text-anchor="middle" class="brand-company">CS VOID LABS • CYBERSECURITY DIVISION</text>
+    <circle cx="212" cy="0" r="5" fill="#38bdf8" filter="url(#hyperGlow)"/>
+    <circle cx="212" cy="0" r="2.5" fill="#ffffff"/>
   </g>
 
-  <!-- Shield Brand Icon (Center Left) -->
-  <g transform="translate(180, 190) scale(1.15)">
-    <!-- Outer Glow Shield -->
-    <path d="M0 -55 L45 -32 L45 18 C45 42 0 62 0 62 C0 62 -45 42 -45 18 L-45 -32 Z" fill="none" stroke="#38bdf8" stroke-width="2.5" opacity="0.4" filter="url(#glow)"/>
-    <!-- Core Solid Shield -->
-    <path d="M0 -50 L40 -30 L40 15 C40 38 0 55 0 55 C0 55 -40 38 -40 15 L-40 -30 Z" fill="url(#shieldGrad)"/>
-    <!-- Inner S Symbol -->
-    <path d="M-10 -22 C-10 -22 12 -22 12 -10 C12 0 -12 2 -12 14 C-12 24 12 24 12 24" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+  <!-- 3D CS VOID / STEALTH SHIELD LOGO (Center Left) -->
+  <g transform="translate(160, 220)">
+    <!-- Ambient Halo Behind Shield -->
+    <circle cx="0" cy="0" r="85" fill="#2563eb" opacity="0.25" filter="url(#hyperGlow)"/>
+    <circle cx="0" cy="0" r="55" fill="#e11d48" opacity="0.2" filter="url(#hyperGlow)"/>
+
+    <!-- Outer Hex-Shield Wireframe -->
+    <polygon points="0,-72 62,-36 62,36 0,72 -62,36 -62,-36" fill="none" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+    <!-- Left Facet -->
+    <path d="M0 -64 L54 -32 L54 32 L0 64 Z" fill="url(#shieldFacet1)" opacity="0.9"/>
+    <!-- Right Facet (Inverted Chromatic) -->
+    <path d="M0 -64 L-54 -32 L-54 32 L0 64 Z" fill="url(#shieldFacet2)" opacity="0.85"/>
+    
+    <!-- Central Chrome Ridge -->
+    <line x1="0" y1="-64" x2="0" y2="64" stroke="#ffffff" stroke-width="2.5" filter="url(#hyperGlow)"/>
+
+    <!-- Stylized 'V' (VOID) Geometric Core -->
+    <path d="M-26 -20 L0 32 L26 -20" fill="none" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#hyperGlow)"/>
+    <!-- Pulsing Singularity Center -->
+    <circle cx="0" cy="0" r="6" fill="#38bdf8" filter="url(#hyperGlow)"/>
+    <circle cx="0" cy="0" r="2" fill="#ffffff"/>
   </g>
 
-  <!-- Main Headline & Pitch -->
-  <text x="270" y="172" class="title">STEALTHWALL</text>
-  <text x="270" y="212" class="subtitle">Sub-Millisecond ML Intrusion Prevention System &amp; Intelligent WAF</text>
+  <!-- Brand Typography & Subtitles -->
+  <text x="280" y="185" class="brand-title">STEALTHWALL</text>
+  <text x="282" y="215" class="brand-author">ENGINEERED BY CS VOID LABS</text>
+  <text x="282" y="252" class="brand-sub">Sub-Millisecond ML Intrusion Prevention &amp; Self-Healing WAF</text>
 
-  <!-- Key Capability Badges (Bottom Center) -->
-  <g transform="translate(270, 275)">
-    <!-- Pill 1 -->
+  <!-- Bottom Capability Feature Pills -->
+  <g transform="translate(280, 315)">
+    <!-- Pill 1: Latency -->
     <g transform="translate(0, 0)">
-      <rect x="0" y="0" width="165" height="36" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-      <circle cx="18" cy="18" r="4" fill="#38bdf8"/>
-      <text x="32" y="22.5" class="node-text">&lt;0.8ms ONNX Eval</text>
+      <rect x="0" y="0" width="185" height="42" rx="10" fill="rgba(15, 23, 42, 0.75)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="1"/>
+      <circle cx="20" cy="21" r="4.5" fill="#38bdf8" filter="url(#hyperGlow)"/>
+      <text x="36" y="26" class="pill-title">&lt;0.8ms ONNX Eval</text>
     </g>
-    <!-- Pill 2 -->
-    <g transform="translate(178, 0)">
-      <rect x="0" y="0" width="180" height="36" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-      <circle cx="18" cy="18" r="4" fill="#34d399"/>
-      <text x="32" y="22.5" class="node-text">14 Entropy Features</text>
+    <!-- Pill 2: 14 Features -->
+    <g transform="translate(200, 0)">
+      <rect x="0" y="0" width="205" height="42" rx="10" fill="rgba(15, 23, 42, 0.75)" stroke="rgba(52, 211, 153, 0.4)" stroke-width="1"/>
+      <circle cx="20" cy="21" r="4.5" fill="#34d399" filter="url(#hyperGlow)"/>
+      <text x="36" y="26" class="pill-title">14 Entropy Features</text>
     </g>
-    <!-- Pill 3 -->
-    <g transform="translate(371, 0)">
-      <rect x="0" y="0" width="175" height="36" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-      <circle cx="18" cy="18" r="4" fill="#a855f7"/>
-      <text x="32" y="22.5" class="node-text">0-Day Heuristics</text>
+    <!-- Pill 3: Bit Parity -->
+    <g transform="translate(420, 0)">
+      <rect x="0" y="0" width="200" height="42" rx="10" fill="rgba(15, 23, 42, 0.75)" stroke="rgba(168, 85, 247, 0.4)" stroke-width="1"/>
+      <circle cx="20" cy="21" r="4.5" fill="#a855f7" filter="url(#hyperGlow)"/>
+      <text x="36" y="26" class="pill-title">5e-8 Dual Bit-Parity</text>
     </g>
-    <!-- Pill 4 -->
-    <g transform="translate(559, 0)">
-      <rect x="0" y="0" width="195" height="36" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-      <circle cx="18" cy="18" r="4" fill="#fbbf24"/>
-      <text x="32" y="22.5" class="node-text">Zero Cloud Telemetry</text>
+    <!-- Pill 4: Zero Telemetry -->
+    <g transform="translate(635, 0)">
+      <rect x="0" y="0" width="205" height="42" rx="10" fill="rgba(15, 23, 42, 0.75)" stroke="rgba(225, 29, 72, 0.4)" stroke-width="1"/>
+      <circle cx="20" cy="21" r="4.5" fill="#e11d48" filter="url(#hyperGlow)"/>
+      <text x="36" y="26" class="pill-title">0-Day Heuristic WAF</text>
     </g>
   </g>
 </svg>

@@ -1,30 +1,35 @@
 <p align="center">
-  <img src="docs/assets/banner.svg" alt="STEALTHWALL Banner" width="100%">
+  <img src="docs/assets/banner.svg" alt="STEALTHWALL by CS VOID LABS" width="100%">
 </p>
 
 <p align="center">
-  <strong>Sub-millisecond machine-learning intrusion prevention system and intelligent Web Application Firewall (WAF).</strong><br>
-  Evaluates real-time sliding-window behavioral entropy across 14 statistical features with LightGBM ONNX inference and automated graduated defense.
+  <strong>Sub-millisecond machine-learning intrusion prevention system and self-healing Web Application Firewall.</strong><br>
+  <em>Engineered by <strong>CS VOID LABS</strong> to mitigate zero-day web attacks, polyglots, and automated scrapers before requests hit backend logic.</em>
 </p>
 
 <p align="center">
-  <a href="https://stealthwall.chinmayshinde.tech"><strong>Explore Website</strong></a> •
-  <a href="https://stealthwall.chinmayshinde.tech/demo.html"><strong>Interactive Live Sandbox</strong></a> •
-  <a href="https://stealthwall.chinmayshinde.tech/how-it-works.html"><strong>Architecture & Math</strong></a> •
-  <a href="https://stealthwall.chinmayshinde.tech/integrations.html"><strong>Integrations Hub</strong></a> •
-  <a href="https://stealthwall.chinmayshinde.tech/benchmarks.html"><strong>Benchmarks</strong></a>
+  <a href="https://stealthwall.chinmayshinde.tech">
+    <img src="https://img.shields.io/badge/🌐_Official_Website-stealthwall.chinmayshinde.tech-0f172a?style=for-the-badge&logo=googlechrome&logoColor=38bdf8&labelColor=020617" alt="Official Website">
+  </a>
+  <a href="https://stealthwall.chinmayshinde.tech/demo.html">
+    <img src="https://img.shields.io/badge/⚡_Live_3D_Sandbox-Attack_Simulator-0f172a?style=for-the-badge&logo=three.js&logoColor=34d399&labelColor=020617" alt="Live Sandbox">
+  </a>
+  <a href="https://stealthwall.chinmayshinde.tech/how-it-works.html">
+    <img src="https://img.shields.io/badge/📖_Architecture-Math_&_Heuristics-0f172a?style=for-the-badge&logo=gitbook&logoColor=a855f7&labelColor=020617" alt="Architecture Docs">
+  </a>
+  <a href="https://stealthwall.chinmayshinde.tech/benchmarks.html">
+    <img src="https://img.shields.io/badge/📊_Benchmarks-Latency_&_Parity-0f172a?style=for-the-badge&logo=speedtest&logoColor=fbbf24&labelColor=020617" alt="Benchmarks">
+  </a>
 </p>
 
 <p align="center">
-  <a href="https://pypi.org/project/stealthwall/"><img src="https://img.shields.io/pypi/v/stealthwall.svg?style=flat-square&color=38bdf8" alt="PyPI Version"></a>
-  <a href="https://www.npmjs.com/package/stealthwall"><img src="https://img.shields.io/npm/v/stealthwall.svg?style=flat-square&color=34d399" alt="npm Version"></a>
-  <a href="https://github.com/CSV0ID/STEALTHWALL/actions"><img src="https://img.shields.io/badge/tests-40%20passed%20(100%25)-brightgreen?style=flat-square" alt="Tests"></a>
-  <a href="https://github.com/CSV0ID/STEALTHWALL/releases/tag/v5.0.0"><img src="https://img.shields.io/badge/release-v5.0.0-blue?style=flat-square" alt="Release"></a>
+  <a href="https://pypi.org/project/stealthwall/"><img src="https://img.shields.io/badge/PyPI-pip_install_stealthwall-3776ab?style=flat-square&logo=pypi&logoColor=white" alt="PyPI Package"></a>
+  <a href="https://www.npmjs.com/package/stealthwall"><img src="https://img.shields.io/badge/npm-npm_i_stealthwall-cb3837?style=flat-square&logo=npm&logoColor=white" alt="npm Package"></a>
+  <a href="https://github.com/CSV0ID/STEALTHWALL/releases/tag/v5.0.0"><img src="https://img.shields.io/badge/release-v5.0.0-22c55e?style=flat-square&logo=github&logoColor=white" alt="Release"></a>
+  <a href="https://github.com/CSV0ID/STEALTHWALL/actions"><img src="https://img.shields.io/badge/tests-40%20passed%20(100%25)-brightgreen?style=flat-square" alt="Tests Passed"></a>
   <a href="https://github.com/CSV0ID/STEALTHWALL/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue?style=flat-square" alt="License: Apache 2.0"></a>
-  <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.9+-blue?style=flat-square&logo=python&logoColor=white" alt="Python 3.9+"></a>
-  <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/node-18+-green?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node.js 18+"></a>
-  <a href="https://stealthwall.chinmayshinde.tech/benchmarks.html"><img src="https://img.shields.io/badge/latency-%3C0.8ms-purple?style=flat-square" alt="Sub-Millisecond Latency"></a>
-  <a href="https://github.com/CSV0ID/STEALTHWALL"><img src="https://img.shields.io/badge/bit--parity-5e--8%20verified-cyan?style=flat-square" alt="Bit-Parity Verified"></a>
+  <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.9+-38bdf8?style=flat-square&logo=python&logoColor=white" alt="Python 3.9+"></a>
+  <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/node-18+-34d399?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node.js 18+"></a>
 </p>
 
 ---
@@ -37,7 +42,7 @@ Traditional Web Application Firewalls (ModSecurity, Cloudflare WAF, AWS WAF) for
 2. **Blind to 0-Day Evasion**: Signature engines fail against novel polyglots, whitespace variations, and polymorphic payload encodings.
 3. **Cloud SaaS Telemetry Leakage**: Routing customer request bodies and headers through third-party cloud infrastructure introduces privacy compliance (GDPR/HIPAA) risks.
 
-**STEALTHWALL eliminates this compromise.** It executes entirely in-process inside your application runtime or edge proxy, extracting **14 normalized behavioral entropy metrics** and scoring requests via an optimized **LightGBM decision forest compiled to ONNX** in **under 0.8 milliseconds**.
+**STEALTHWALL eliminates this compromise.** Built by **CS VOID LABS**, it executes entirely in-process inside your application runtime or edge proxy, extracting **14 normalized behavioral entropy metrics** and scoring requests via an optimized **LightGBM decision forest compiled to ONNX** in **under 0.8 milliseconds**.
 
 ---
 
@@ -82,9 +87,9 @@ Traditional Web Application Firewalls (ModSecurity, Cloudflare WAF, AWS WAF) for
 
 ---
 
-## 📊 Comparison Matrix
+## 📊 Head-to-Head Comparison Matrix
 
-| Feature | STEALTHWALL | ModSecurity / Coraza | Cloudflare WAF | AWS WAF |
+| Feature | STEALTHWALL (CS VOID LABS) | ModSecurity / Coraza | Cloudflare WAF | AWS WAF |
 | :--- | :---: | :---: | :---: | :---: |
 | **Inference Overhead** | **`<0.8 ms`** | `15 – 35 ms` | `20 – 60 ms` (Network) | `10 – 30 ms` |
 | **Detection Methodology** | **Behavioral ML + 0-Day Heuristics** | Static Regex Signatures | Proprietary Cloud Rules | Managed Rulesets |
@@ -92,7 +97,7 @@ Traditional Web Application Firewalls (ModSecurity, Cloudflare WAF, AWS WAF) for
 | **Cross-Language Bit-Parity** | **`5e-8` (Python & Node.js)** | N/A | N/A | N/A |
 | **Automated Graduated Defense** | **Progressive (PoW / Rate / Drop)** | Binary Block / Allow | CAPTCHA / Block | Challenge / Block |
 | **Zero-Day Heuristics** | **SSRF / Log4j / XXE / SSTI** | Requires Signature Update | Managed Cloud Update | Managed Cloud Update |
-| **License** | **MIT (Open Source)** | Apache 2.0 | Commercial | Commercial |
+| **License** | **Apache 2.0 (Open Source)** | Apache 2.0 | Commercial | Commercial |
 
 ---
 
@@ -108,7 +113,7 @@ pip install stealthwall
 from fastapi import FastAPI
 from stealthwall.middleware import StealthwallMiddleware
 
-app = FastAPI(title="Secure API")
+app = FastAPI(title="Secure Production API")
 
 # Attach STEALTHWALL in 1 line of code
 app.add_middleware(StealthwallMiddleware)
@@ -148,9 +153,9 @@ app.listen(3000, () => console.log('Server running on port 3000'));
 
 ---
 
-### 🐳 Full Stack Deployment (Docker Compose)
+### 🐳 Full Stack Monitoring (Docker Compose)
 
-Deploy the complete enterprise monitoring stack (Dashboard, Redis sliding window cache, and Prometheus metrics) in one command:
+Deploy the complete enterprise monitoring stack (Operations Dashboard, Redis sliding-window cache, and Prometheus metrics) with one command:
 
 ```bash
 docker compose up -d
@@ -220,11 +225,11 @@ We welcome contributions from security researchers, ML practitioners, and backen
 
 ---
 
-## 👤 Author & Maintainer
+## 🏢 Organization & Author
 
 <p align="left">
-  <strong>Chinmay Shinde</strong> • <a href="https://github.com/CSV0ID">@CSV0ID</a><br>
-  <em>Software & Security Systems Engineer</em>
+  <strong>CS VOID LABS</strong> • <em>Offensive Security & Machine Learning Division</em><br>
+  Founder & Lead Architect: <strong>Chinmay Shinde</strong> (<a href="https://github.com/CSV0ID">@CSV0ID</a>)
 </p>
 
 <p align="left">
