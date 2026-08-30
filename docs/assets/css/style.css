@@ -1,16 +1,16 @@
 /* ==========================================================================
-   STEALTHWALL — Liquid Glass & Modern Skeuomorphism Design System
+   STEALTHWALL — Pure High-Contrast Engineered Dark System
    ========================================================================== */
 
 :root {
-  --bg: #090d16;
-  --bg-surface: rgba(255, 255, 255, 0.04);
-  --bg-card: rgba(255, 255, 255, 0.05);
-  --bg-card-hover: rgba(255, 255, 255, 0.08);
+  --bg: #070a13;
+  --bg-surface: rgba(255, 255, 255, 0.03);
+  --bg-card: rgba(13, 19, 33, 0.7);
+  --bg-card-hover: rgba(18, 26, 45, 0.85);
   
-  --glass-border: rgba(255, 255, 255, 0.12);
-  --glass-border-top: rgba(255, 255, 255, 0.25);
-  --glass-border-hover: rgba(255, 255, 255, 0.28);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-top: rgba(255, 255, 255, 0.18);
+  --glass-border-hover: rgba(56, 189, 248, 0.35);
   
   --text: #f8fafc;
   --text-muted: #94a3b8;
@@ -24,7 +24,7 @@
   --danger: #f87171;
   --warning: #fbbf24;
   --success: #34d399;
-  --code-bg: rgba(6, 10, 20, 0.75);
+  --code-bg: #0b1120;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,7 +32,7 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: #04060c;
+  background-color: #070a13;
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
@@ -41,39 +41,23 @@ body {
   display: flex;
   flex-direction: column;
   background-image: 
-    radial-gradient(circle at 12% 16%, rgba(239, 68, 68, 0.26) 0%, transparent 45%),
-    radial-gradient(circle at 88% 14%, rgba(245, 158, 11, 0.22) 0%, transparent 50%),
-    radial-gradient(circle at 50% 38%, rgba(20, 184, 166, 0.22) 0%, transparent 55%),
-    radial-gradient(circle at 14% 76%, rgba(16, 185, 129, 0.22) 0%, transparent 45%),
-    radial-gradient(circle at 86% 82%, rgba(225, 29, 72, 0.24) 0%, transparent 50%),
-    radial-gradient(circle at 50% 0%, rgba(251, 191, 36, 0.20) 0%, transparent 55%);
-  background-attachment: fixed;
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
 
-/* Chromatic Liquid Glass Ambient Light Refraction */
+/* Subtle Static Radial Anchor Glow */
 body::before {
   content: '';
   position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: 
-    radial-gradient(ellipse at 22% 22%, rgba(239, 68, 68, 0.26), transparent 42%),
-    radial-gradient(ellipse at 78% 18%, rgba(245, 158, 11, 0.24), transparent 48%),
-    radial-gradient(ellipse at 28% 76%, rgba(20, 184, 166, 0.24), transparent 42%),
-    radial-gradient(ellipse at 80% 74%, rgba(16, 185, 129, 0.22), transparent 46%);
-  filter: blur(85px);
-  opacity: 0.95;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  height: 500px;
+  background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.08) 0%, rgba(37, 99, 235, 0.03) 45%, transparent 70%);
   pointer-events: none;
   z-index: 0;
-  animation: liquidGlassShift 22s ease-in-out infinite alternate;
-}
-
-@keyframes liquidGlassShift {
-  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-  50% { transform: translate(4%, -3%) rotate(4deg) scale(1.04); }
-  100% { transform: translate(-3%, 4%) rotate(-3deg) scale(0.98); }
 }
 
 nav, section, footer {
@@ -86,17 +70,19 @@ nav, section, footer {
 .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; width: 100%; }
 
 h1, .hero h1 {
-  color: #030712 !important;
-  -webkit-text-stroke: 1.4px #ffffff;
-  text-shadow: 0 0 16px rgba(255, 255, 255, 0.75), 0 0 35px rgba(255, 255, 255, 0.35);
-  letter-spacing: -0.02em;
+  color: #ffffff !important;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 h2, .section-title h2 {
-  color: #030712 !important;
-  -webkit-text-stroke: 1.3px #ffffff;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.75), 0 0 30px rgba(255, 255, 255, 0.35);
+  color: #ffffff !important;
+  font-weight: 700;
   letter-spacing: -0.02em;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: none;
 }
 
 h3, h4, h5, h6 {
@@ -107,37 +93,41 @@ h3, h4, h5, h6 {
 }
 
 .gradient-text, .gradient-headline {
-  color: #030712 !important;
-  -webkit-text-stroke: 1.4px #38bdf8;
-  text-shadow: 0 0 20px rgba(56, 189, 248, 0.85), 0 0 40px rgba(0, 242, 254, 0.5);
+  background: linear-gradient(135deg, #ffffff 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: none;
   display: inline-block;
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .gradient-text-cyan {
-  color: #030712 !important;
-  -webkit-text-stroke: 1.4px #34d399;
-  text-shadow: 0 0 20px rgba(52, 211, 153, 0.85), 0 0 40px rgba(16, 185, 129, 0.5);
+  background: linear-gradient(135deg, #ffffff 0%, #34d399 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: none;
   display: inline-block;
-  font-weight: 900;
+  font-weight: 800;
 }
 
-/* Liquid Glass Badge */
+/* Precision Glass Badge */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.4rem 0.95rem;
+  padding: 0.35rem 0.85rem;
   border-radius: 9999px;
   font-size: 0.8125rem;
   font-weight: 600;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--glass-border);
-  border-top: 1px solid var(--glass-border-top);
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   color: #e0f2fe;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
 .badge-dot {
@@ -301,13 +291,13 @@ nav {
 
 .hero h1 {
   font-size: 3.25rem;
-  font-weight: 900;
-  letter-spacing: -0.025em;
-  line-height: 1.18;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
   margin: 1.25rem 0 1rem;
-  color: #000000 !important;
-  -webkit-text-stroke: 1.5px #ffffff;
-  text-shadow: 0 0 18px rgba(255, 255, 255, 0.8), 0 0 35px rgba(255, 255, 255, 0.4);
+  color: #ffffff !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
 
 .hero p {
