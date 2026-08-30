@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Homepage / Overview -->
+  <url>
+    <loc>https://stealthwall.chinmayshinde.tech/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://stealthwall.chinmayshinde.tech/assets/banner.svg</image:loc>
+      <image:title>STEALTHWALL — Sub-Millisecond ML Intrusion Prevention System</image:title>
+    </image:image>
+  </url>
+
+  <!-- How It Works / Architecture & Math -->
+  <url>
+    <loc>https://stealthwall.chinmayshinde.tech/how-it-works.html</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Interactive Live 3D Attack Sandbox -->
+  <url>
+    <loc>https://stealthwall.chinmayshinde.tech/demo.html</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Integrations Hub (FastAPI, Express, Next.js, Nginx, PHP) -->
+  <url>
+    <loc>https://stealthwall.chinmayshinde.tech/integrations.html</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Empirical Benchmarks & Bit-Parity Research -->
+  <url>
+    <loc>https://stealthwall.chinmayshinde.tech/benchmarks.html</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- About, Security Policy & Responsible Disclosure -->
+  <url>
+    <loc>https://stealthwall.chinmayshinde.tech/about.html</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

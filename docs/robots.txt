@@ -1,0 +1,46 @@
+# ==============================================================================
+# STEALTHWALL — Robots.txt & Search Engine Indexing Directives
+# Canonical Domain: https://stealthwall.chinmayshinde.tech
+# ==============================================================================
+
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /how-it-works.html
+Allow: /demo.html
+Allow: /integrations.html
+Allow: /benchmarks.html
+Allow: /about.html
+Allow: /assets/
+Allow: /assets/css/
+Allow: /assets/js/
+Allow: /assets/logo.svg
+Allow: /assets/banner.svg
+
+# Major AI & Search Engine Crawlers Explicitly Allowed
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Sitemap Location
+Sitemap: https://stealthwall.chinmayshinde.tech/sitemap.xml
