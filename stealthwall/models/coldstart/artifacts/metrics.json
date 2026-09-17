@@ -1,48 +1,371 @@
 {
-  "trained_at": 1787421815.4115615,
+  "trained_at": 1789589360.695456,
+  "algorithm": "random_forest",
   "feature_spec_version": 1,
   "model_schema_version": 1,
-  "n_train": 1250,
-  "n_test": 417,
-  "n_demo": 333,
+  "decision_threshold": 0.6,
+  "n_total": 7200,
+  "n_train": 4650,
+  "n_test": 1550,
+  "n_demo": 1000,
   "held_out_demo_source": "ffuf_synthetic",
+  "candidates": {
+    "random_forest": {
+      "in_distribution": {
+        "threshold": 0.6,
+        "precision": 1.0,
+        "recall": 1.0,
+        "benign_false_positive_rate": 0.0,
+        "hard_negative_false_positive_rate": 0.0,
+        "confusion": {
+          "tp": 950,
+          "fp": 0,
+          "fn": 0,
+          "tn": 600
+        },
+        "per_group": {
+          "attack/bruteforce/nmap_synthetic": {
+            "n": 147,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/bruteforce/voidstrike_synthetic": {
+            "n": 153,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/flood/hulk_synthetic": {
+            "n": 158,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/flood/voidstrike_synthetic": {
+            "n": 163,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/injection/voidstrike_synthetic": {
+            "n": 136,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/scan/nmap_synthetic": {
+            "n": 95,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/scan/voidstrike_synthetic": {
+            "n": 98,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "benign/benign/benign_synthetic": {
+            "n": 310,
+            "detection_rate": 0.0,
+            "false_positive_rate": 0.0
+          },
+          "benign/hardneg/hardneg_synthetic": {
+            "n": 290,
+            "detection_rate": 0.0,
+            "false_positive_rate": 0.0
+          }
+        }
+      },
+      "cross_tool": {
+        "threshold": 0.6,
+        "precision": 1.0,
+        "recall": 1.0,
+        "benign_false_positive_rate": 0.0,
+        "hard_negative_false_positive_rate": 0.0,
+        "confusion": {
+          "tp": 1000,
+          "fp": 0,
+          "fn": 0,
+          "tn": 0
+        },
+        "per_group": {
+          "attack/injection/ffuf_synthetic": {
+            "n": 600,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/scan/ffuf_synthetic": {
+            "n": 400,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          }
+        }
+      }
+    },
+    "extra_trees": {
+      "in_distribution": {
+        "threshold": 0.6,
+        "precision": 1.0,
+        "recall": 1.0,
+        "benign_false_positive_rate": 0.0,
+        "hard_negative_false_positive_rate": 0.0,
+        "confusion": {
+          "tp": 950,
+          "fp": 0,
+          "fn": 0,
+          "tn": 600
+        },
+        "per_group": {
+          "attack/bruteforce/nmap_synthetic": {
+            "n": 147,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/bruteforce/voidstrike_synthetic": {
+            "n": 153,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/flood/hulk_synthetic": {
+            "n": 158,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/flood/voidstrike_synthetic": {
+            "n": 163,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/injection/voidstrike_synthetic": {
+            "n": 136,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/scan/nmap_synthetic": {
+            "n": 95,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/scan/voidstrike_synthetic": {
+            "n": 98,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "benign/benign/benign_synthetic": {
+            "n": 310,
+            "detection_rate": 0.0,
+            "false_positive_rate": 0.0
+          },
+          "benign/hardneg/hardneg_synthetic": {
+            "n": 290,
+            "detection_rate": 0.0,
+            "false_positive_rate": 0.0
+          }
+        }
+      },
+      "cross_tool": {
+        "threshold": 0.6,
+        "precision": 1.0,
+        "recall": 1.0,
+        "benign_false_positive_rate": 0.0,
+        "hard_negative_false_positive_rate": 0.0,
+        "confusion": {
+          "tp": 1000,
+          "fp": 0,
+          "fn": 0,
+          "tn": 0
+        },
+        "per_group": {
+          "attack/injection/ffuf_synthetic": {
+            "n": 600,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/scan/ffuf_synthetic": {
+            "n": 400,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          }
+        }
+      }
+    },
+    "gradient_boosting": {
+      "in_distribution": {
+        "threshold": 0.6,
+        "precision": 1.0,
+        "recall": 1.0,
+        "benign_false_positive_rate": 0.0,
+        "hard_negative_false_positive_rate": 0.0,
+        "confusion": {
+          "tp": 950,
+          "fp": 0,
+          "fn": 0,
+          "tn": 600
+        },
+        "per_group": {
+          "attack/bruteforce/nmap_synthetic": {
+            "n": 147,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/bruteforce/voidstrike_synthetic": {
+            "n": 153,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/flood/hulk_synthetic": {
+            "n": 158,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/flood/voidstrike_synthetic": {
+            "n": 163,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/injection/voidstrike_synthetic": {
+            "n": 136,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/scan/nmap_synthetic": {
+            "n": 95,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/scan/voidstrike_synthetic": {
+            "n": 98,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "benign/benign/benign_synthetic": {
+            "n": 310,
+            "detection_rate": 0.0,
+            "false_positive_rate": 0.0
+          },
+          "benign/hardneg/hardneg_synthetic": {
+            "n": 290,
+            "detection_rate": 0.0,
+            "false_positive_rate": 0.0
+          }
+        }
+      },
+      "cross_tool": {
+        "threshold": 0.6,
+        "precision": 1.0,
+        "recall": 1.0,
+        "benign_false_positive_rate": 0.0,
+        "hard_negative_false_positive_rate": 0.0,
+        "confusion": {
+          "tp": 1000,
+          "fp": 0,
+          "fn": 0,
+          "tn": 0
+        },
+        "per_group": {
+          "attack/injection/ffuf_synthetic": {
+            "n": 600,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          },
+          "attack/scan/ffuf_synthetic": {
+            "n": 400,
+            "detection_rate": 1.0,
+            "false_positive_rate": 0.0
+          }
+        }
+      }
+    }
+  },
   "in_distribution_test": {
+    "threshold": 0.6,
     "precision": 1.0,
     "recall": 1.0,
     "benign_false_positive_rate": 0.0,
+    "hard_negative_false_positive_rate": 0.0,
+    "confusion": {
+      "tp": 950,
+      "fp": 0,
+      "fn": 0,
+      "tn": 600
+    },
     "per_group": {
-      "attack/nmap_synthetic": {
-        "n": 78,
+      "attack/bruteforce/nmap_synthetic": {
+        "n": 147,
         "detection_rate": 1.0,
         "false_positive_rate": 0.0
       },
-      "attack/voidstrike_synthetic": {
-        "n": 139,
+      "attack/bruteforce/voidstrike_synthetic": {
+        "n": 153,
         "detection_rate": 1.0,
         "false_positive_rate": 0.0
       },
-      "benign/benign_synthetic": {
-        "n": 90,
+      "attack/flood/hulk_synthetic": {
+        "n": 158,
+        "detection_rate": 1.0,
+        "false_positive_rate": 0.0
+      },
+      "attack/flood/voidstrike_synthetic": {
+        "n": 163,
+        "detection_rate": 1.0,
+        "false_positive_rate": 0.0
+      },
+      "attack/injection/voidstrike_synthetic": {
+        "n": 136,
+        "detection_rate": 1.0,
+        "false_positive_rate": 0.0
+      },
+      "attack/scan/nmap_synthetic": {
+        "n": 95,
+        "detection_rate": 1.0,
+        "false_positive_rate": 0.0
+      },
+      "attack/scan/voidstrike_synthetic": {
+        "n": 98,
+        "detection_rate": 1.0,
+        "false_positive_rate": 0.0
+      },
+      "benign/benign/benign_synthetic": {
+        "n": 310,
         "detection_rate": 0.0,
         "false_positive_rate": 0.0
       },
-      "benign/hardneg_synthetic": {
-        "n": 110,
+      "benign/hardneg/hardneg_synthetic": {
+        "n": 290,
         "detection_rate": 0.0,
         "false_positive_rate": 0.0
       }
     }
   },
   "cross_tool_demo": {
+    "threshold": 0.6,
     "precision": 1.0,
     "recall": 1.0,
     "benign_false_positive_rate": 0.0,
+    "hard_negative_false_positive_rate": 0.0,
+    "confusion": {
+      "tp": 1000,
+      "fp": 0,
+      "fn": 0,
+      "tn": 0
+    },
     "per_group": {
-      "attack/ffuf_synthetic": {
-        "n": 333,
+      "attack/injection/ffuf_synthetic": {
+        "n": 600,
+        "detection_rate": 1.0,
+        "false_positive_rate": 0.0
+      },
+      "attack/scan/ffuf_synthetic": {
+        "n": 400,
         "detection_rate": 1.0,
         "false_positive_rate": 0.0
       }
+    }
+  },
+  "data_provenance": "synthetic (generate_dataset.py) \u2014 replace with build_dataset_from_logs.py output once real traffic is available",
+  "gate_held_out_metrics": true,
+  "gate_exported_artifact": {
+    "ok": true,
+    "smoke_failures": [],
+    "roundtrip": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "score_spread": 0.999999
     }
   },
   "validation_passed": true
